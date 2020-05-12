@@ -1,4 +1,4 @@
-package com.globant.marvel_mvvm
+package com.globant.marvelmvvm
 
 import org.junit.Test
 
