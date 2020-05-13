@@ -1,7 +1,8 @@
-package com.globant.marvel_mvvm
+package com.globant.marvelmvvm.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.globant.marvelmvvm.R
 
 class MainActivity : AppCompatActivity() {
 
