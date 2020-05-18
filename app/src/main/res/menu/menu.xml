@@ -2,8 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/allCharactersFragment"
-        android:title="@string/string_all_characters" />
+        android:title="@string/string_menu_all_characters" />
     <item
         android:id="@+id/specificCharacterFragment"
-        android:title="@string/string_specific_character" />
+        android:title="@string/string_menu_specific_character" />
 </menu>

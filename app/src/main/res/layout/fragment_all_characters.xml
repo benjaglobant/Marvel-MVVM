@@ -6,7 +6,7 @@
     android:background="@android:color/black">
 
     <ImageView
-        android:id="@+id/background_image"
+        android:id="@+id/fragment_all_characters_background_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/main_background"/>
