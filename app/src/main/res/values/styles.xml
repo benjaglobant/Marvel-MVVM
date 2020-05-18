@@ -8,4 +8,25 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="style_navigation_view_item">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/text_size_navigation_view_item</item>
+    </style>
+
+    <style name="style_navigation_view">
+        <item name="android:layout_gravity">start</item>
+        <item name="android:layout_marginTop">@dimen/margin_top_navigation_view</item>
+        <item name="itemIconTint">@android:color/white</item>
+        <item name="itemTextAppearance">@style/style_navigation_view_item</item>
+    </style>
+
+    <style name="style_toolbar_title">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/text_size_toolbar_title</item>
+    </style>
 </resources>

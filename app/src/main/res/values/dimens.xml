@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="transparency_navigation_view">0.8</dimen>
+    <dimen name="margin_toolbar">5dp</dimen>
+    <dimen name="text_size_navigation_view_item">22sp</dimen>
+    <dimen name="text_size_toolbar_title">25sp</dimen>
+    <dimen name="text_size_specific_character_fragment">25sp</dimen>
+    <dimen name="margin_top_navigation_view">5dp</dimen>
+</resources>

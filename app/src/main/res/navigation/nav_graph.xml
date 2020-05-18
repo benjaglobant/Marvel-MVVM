@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/allCharactersFragment">
+
+    <fragment
+        android:id="@+id/allCharactersFragment"
+        android:name="com.globant.marvelmvvm.view.fragment.AllCharactersFragment"
+        android:label="@string/string_all_characters"
+        tools:layout="@layout/fragment_all_characters" />
+
+    <fragment
+        android:id="@+id/specificCharacterFragment"
+        android:name="com.globant.marvelmvvm.view.fragment.SpecificCharacterFragment"
+        android:label="@string/string_specific_character"
+        tools:layout="@layout/fragment_specific_character" />
+</navigation>

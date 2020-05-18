@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Marvel-MVVM</string>
+    <string name="string_menu_all_characters">Show all characters</string>
+    <string name="string_menu_specific_character">Show specific character</string>
+    <string name="string_toolbar_title">MARVEL APP</string>
+    <string name="string_specific_character">Specific Character</string>
+    <string name="string_all_characters">All Characters</string>
+    <string name="string_specific_character_message">Navigate to Specific Character Fragment</string>
+    <string name="string_all_characters_message">Navigate to All Characters Fragment</string>
+    <string name="string_specific_character_fragment_text">IN THIS FRAGMENT I WILL SHOW THE INFORMATION OF AN SPECIFIC CHARACTER</string>
 </resources>
