@@ -8,4 +8,7 @@
     <string name="string_specific_character_message">Navigate to Specific Character Fragment</string>
     <string name="string_all_characters_message">Navigate to All Characters Fragment</string>
     <string name="string_specific_character_fragment_text">IN THIS FRAGMENT I WILL SHOW THE INFORMATION OF AN SPECIFIC CHARACTER</string>
+    <string name="string_first_character_id">FIRST CHARACTER ID: </string>
+    <string name="string_number_of_characters">NUMBER OF CHARACTERS: </string>
+    <string name="string_request_error">Error: The request could not be done</string>
 </resources>
