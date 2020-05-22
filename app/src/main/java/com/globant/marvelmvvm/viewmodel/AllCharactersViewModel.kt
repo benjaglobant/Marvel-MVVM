@@ -17,7 +17,7 @@ import kotlinx.coroutines.withContext
 class AllCharactersViewModel(private val model: AllCharactersContract.Model) : ViewModel(), AllCharactersContract.ViewModel {
 
     private var mutableMainState: MutableLiveData<Event<Data<List<Character>>>> = MutableLiveData()
-    override val mainState: LiveData<Event<Data<List<Character>>>> = mutableMainState
+    override fun getLiveData(): LiveData<Event<Data<List<Character>>>> = mutableMainState
 
     override fun fetchAllCharacters() = viewModelScope.launch {
         mutableMainState.postValue(Event(Data(status = Status.LOADING)))

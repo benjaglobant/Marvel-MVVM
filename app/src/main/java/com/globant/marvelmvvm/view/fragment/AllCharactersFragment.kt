@@ -8,24 +8,29 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.globant.marvelmvvm.R
 import com.globant.marvelmvvm.contract.AllCharactersContract
 import com.globant.marvelmvvm.data.entity.Character
 import com.globant.marvelmvvm.data.service.MarvelService
 import com.globant.marvelmvvm.model.AllCharactersModel
-import com.globant.marvelmvvm.util.Constants.ZERO
+import com.globant.marvelmvvm.util.AllCharactersRecyclerViewAdapter
+import com.globant.marvelmvvm.util.Constants.CHARACTER_ID
 import com.globant.marvelmvvm.util.Data
 import com.globant.marvelmvvm.util.Event
 import com.globant.marvelmvvm.util.Status
 import com.globant.marvelmvvm.viewmodel.AllCharactersViewModel
-import kotlinx.android.synthetic.main.fragment_all_characters.fragment_all_characters_background_image
-import kotlinx.android.synthetic.main.fragment_all_characters.fragment_all_characters_character_id
-import kotlinx.android.synthetic.main.fragment_all_characters.fragment_all_characters_count
+import kotlinx.android.synthetic.main.fragment_all_characters.fragment_all_characters_recycler_view
 import kotlinx.android.synthetic.main.fragment_all_characters.fragment_all_characters_loader
+import kotlinx.android.synthetic.main.fragment_all_characters.fragment_all_characters_background_image
 
 class AllCharactersFragment : Fragment() {
 
     private lateinit var allCharactersViewModel: AllCharactersContract.ViewModel
+    private var allCharactersAdapter = AllCharactersRecyclerViewAdapter{characterId ->
+        replaceFragment(characterId)
+    }
 
     private inline fun <VM : ViewModel> viewModelFactory(crossinline f: () -> VM) =
         object : ViewModelProvider.Factory {
@@ -47,7 +52,7 @@ class AllCharactersFragment : Fragment() {
                 AllCharactersViewModel(AllCharactersModel(MarvelService())) })
                     .get(AllCharactersViewModel::class.java)
 
-        allCharactersViewModel.mainState.observe(::getLifecycle, ::updateUI)
+        allCharactersViewModel.getLiveData().observe(::getLifecycle, ::updateUI)
 
         allCharactersViewModel.fetchAllCharacters()
     }
@@ -66,16 +71,25 @@ class AllCharactersFragment : Fragment() {
     }
 
     private fun showAllCharacters(data: List<Character>?) {
-        setLoaderState(View.GONE)
-        data.let {
-            fragment_all_characters_character_id.text =
-                "${getString(R.string.string_first_character_id)} ${it?.get(ZERO)?.id}"
-            fragment_all_characters_count.text =
-                "${getString(R.string.string_number_of_characters)} ${it?.size}"
+        data?.let {
+            setLoaderState(View.GONE)
+            allCharactersAdapter.submitList(it)
+            fragment_all_characters_recycler_view.apply {
+                layoutManager = LinearLayoutManager(this.context)
+                adapter = allCharactersAdapter
+                visibility = View.VISIBLE
+            }
         }
     }
 
     private fun showError(){
         Toast.makeText(this.context, getString(R.string.string_request_error), Toast.LENGTH_SHORT).show()
+    }
+
+    private fun replaceFragment(characterId: String){
+        val navController = this.findNavController()
+        val args = Bundle()
+        args.putString(CHARACTER_ID, characterId)
+        navController.navigate(R.id.specificCharacterFragment, args)
     }
 }
