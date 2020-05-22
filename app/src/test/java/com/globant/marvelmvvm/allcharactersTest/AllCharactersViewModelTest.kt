@@ -5,7 +5,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import com.globant.marvelmvvm.contract.AllCharactersContract
 import com.globant.marvelmvvm.data.entity.Character
-import com.globant.marvelmvvm.util.*
+import com.globant.marvelmvvm.util.Data
+import com.globant.marvelmvvm.util.Result
+import com.globant.marvelmvvm.util.Status
 import com.globant.marvelmvvm.viewmodel.AllCharactersViewModel
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
@@ -83,9 +85,9 @@ class AllCharactersViewModelTest {
             viewModel.fetchAllCharacters().join()
         }
         verify(mockedModel).getAllCharacters()
-        assertEquals(responseList[0].status, liveDataUnderTest.observedValues[0]?.peekContent()?.status)
-        assertEquals(responseList[1].status, liveDataUnderTest.observedValues[1]?.peekContent()?.status)
-        assertEquals(responseList[1].data, liveDataUnderTest.observedValues[1]?.peekContent()?.data)
+        assertEquals(responseList[ZERO].status, liveDataUnderTest.observedValues[ZERO]?.peekContent()?.status)
+        assertEquals(responseList[ONE].status, liveDataUnderTest.observedValues[ONE]?.peekContent()?.status)
+        assertEquals(responseList[ONE].data, liveDataUnderTest.observedValues[ONE]?.peekContent()?.data)
     }
 
 

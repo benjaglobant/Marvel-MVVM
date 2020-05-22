@@ -8,6 +8,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.navigation.Navigation
 import com.globant.marvelmvvm.R
+import com.globant.marvelmvvm.util.Constants.ZERO
 import com.google.android.material.navigation.NavigationView.OnNavigationItemSelectedListener
 import kotlinx.android.synthetic.main.activity_main.activity_main_toolbar
 import kotlinx.android.synthetic.main.activity_main.activity_main_navigation_view
@@ -45,9 +46,5 @@ class MainActivity : AppCompatActivity(), OnNavigationItemSelectedListener {
         }
         activity_main_drawer_layout.closeDrawer(GravityCompat.START)
         return true
-    }
-
-    companion object {
-        const val ZERO = 0
     }
 }

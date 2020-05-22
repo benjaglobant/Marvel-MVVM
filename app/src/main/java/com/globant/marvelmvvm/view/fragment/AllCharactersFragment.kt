@@ -11,9 +11,9 @@ import androidx.lifecycle.ViewModelProvider
 import com.globant.marvelmvvm.R
 import com.globant.marvelmvvm.contract.AllCharactersContract
 import com.globant.marvelmvvm.data.entity.Character
-import com.globant.marvelmvvm.data.repository.MarvelRepository
+import com.globant.marvelmvvm.data.service.MarvelService
 import com.globant.marvelmvvm.model.AllCharactersModel
-import com.globant.marvelmvvm.util.Constants.Companion.ZERO
+import com.globant.marvelmvvm.util.Constants.ZERO
 import com.globant.marvelmvvm.util.Data
 import com.globant.marvelmvvm.util.Event
 import com.globant.marvelmvvm.util.Status
@@ -44,7 +44,7 @@ class AllCharactersFragment : Fragment() {
 
         allCharactersViewModel =
             ViewModelProvider(this, viewModelFactory {
-                AllCharactersViewModel(AllCharactersModel(MarvelRepository())) })
+                AllCharactersViewModel(AllCharactersModel(MarvelService())) })
                     .get(AllCharactersViewModel::class.java)
 
         allCharactersViewModel.mainState.observe(::getLifecycle, ::updateUI)
