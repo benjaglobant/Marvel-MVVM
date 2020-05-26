@@ -10,7 +10,7 @@ import kotlinx.coroutines.Job
 interface AllCharactersContract {
     interface ViewModel {
         fun fetchAllCharacters(): Job
-        fun getLiveData(): LiveData<Event<Data<List<Character>>>>
+        fun getAllCharactersLiveData(): LiveData<Event<Data<List<Character>>>>
     }
 
     interface Model {

@@ -52,7 +52,7 @@ class AllCharactersFragment : Fragment() {
                 AllCharactersViewModel(AllCharactersModel(MarvelService())) })
                     .get(AllCharactersViewModel::class.java)
 
-        allCharactersViewModel.getLiveData().observe(::getLifecycle, ::updateUI)
+        allCharactersViewModel.getAllCharactersLiveData().observe(::getLifecycle, ::updateUI)
 
         allCharactersViewModel.fetchAllCharacters()
     }
@@ -87,9 +87,8 @@ class AllCharactersFragment : Fragment() {
     }
 
     private fun replaceFragment(characterId: String){
-        val navController = this.findNavController()
         val args = Bundle()
         args.putString(CHARACTER_ID, characterId)
-        navController.navigate(R.id.specificCharacterFragment, args)
+        this.findNavController().navigate(R.id.specificCharacterFragment, args)
     }
 }

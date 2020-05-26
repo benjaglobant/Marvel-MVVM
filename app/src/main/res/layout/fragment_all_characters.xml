@@ -20,12 +20,16 @@
         android:layout_height="wrap_content"
         style="@style/Widget.AppCompat.ProgressBar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/fragment_all_characters_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"/>
+        android:visibility="gone"
+        tools:visibility="visible"
+        tools:listitem="@layout/card_view_character_item_layout"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

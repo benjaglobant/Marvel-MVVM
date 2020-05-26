@@ -11,17 +11,17 @@ import com.globant.marvelmvvm.data.entity.Character
 import kotlinx.android.synthetic.main.card_view_character_item_layout.view.all_characters_item_id
 import kotlinx.android.synthetic.main.card_view_character_item_layout.view.all_characters_item_thumbnail
 
-class AllCharactersRecyclerViewAdapter(private val onItemClick: (String) -> Unit): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class AllCharactersRecyclerViewAdapter(private val onItemClick: (String) -> Unit): RecyclerView.Adapter<AllCharactersRecyclerViewAdapter.AllCharactersViewHolder>() {
 
     private var characterList: List<Character> = ArrayList()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return WeatherViewHolder(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AllCharactersViewHolder{
+        return AllCharactersViewHolder(
             LayoutInflater.from(parent.context)
                 .inflate(R.layout.card_view_character_item_layout, parent, false), onItemClick)}
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        (holder as WeatherViewHolder).bind(this.characterList[position])
+    override fun onBindViewHolder(holder: AllCharactersViewHolder, position: Int) {
+        holder.bind(this.characterList[position])
     }
 
     override fun getItemCount(): Int = this.characterList.size
@@ -30,7 +30,7 @@ class AllCharactersRecyclerViewAdapter(private val onItemClick: (String) -> Unit
         this.characterList = characters
     }
 
-    class WeatherViewHolder(itemView: View, private val onItemClick: (String) -> Unit) : RecyclerView.ViewHolder(itemView) {
+    class AllCharactersViewHolder(itemView: View, private val onItemClick: (String) -> Unit) : RecyclerView.ViewHolder(itemView) {
 
         private val characterThumbnail = itemView.all_characters_item_thumbnail
         private val characterId = itemView.all_characters_item_id
@@ -39,16 +39,17 @@ class AllCharactersRecyclerViewAdapter(private val onItemClick: (String) -> Unit
             itemView.setOnClickListener{
                 onItemClick(character.id)
             }
+
+            val requestOptions = RequestOptions()
+            requestOptions
+                .placeholder(R.drawable.main_background)
+                .error(R.drawable.error_image)
+
             character.apply {
-                characterId.text = this.id
-
-                val requestOptions = RequestOptions()
-                    .placeholder(R.drawable.ic_launcher_background)
-                    .error(R.drawable.ic_launcher_background)
-
+                characterId.text = id
                 Glide.with(itemView.context)
                     .applyDefaultRequestOptions(requestOptions)
-                    .load(character.image)
+                    .load(image)
                     .into(characterThumbnail)
             }
         }
