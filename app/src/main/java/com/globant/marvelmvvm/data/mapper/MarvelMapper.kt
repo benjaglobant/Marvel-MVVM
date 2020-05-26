@@ -9,7 +9,7 @@ import com.globant.marvelmvvm.data.service.response.MarvelBaseResponse
 class MarvelMapper {
 
     private fun transformToThumbnail(thumbnailResponse: ThumbnailResponse): String =
-        "${thumbnailResponse.path}${thumbnailResponse.extension}"
+        "${thumbnailResponse.path}$DOT${thumbnailResponse.extension}"
 
     private fun transformToCharacter(characterResponse: CharacterResponse): Character =
         characterResponse.let {
@@ -18,4 +18,8 @@ class MarvelMapper {
 
     fun transformToListOfCharacters(response: MarvelBaseResponse<DataBaseResponse<ArrayList<CharacterResponse>>>): List<Character>? =
         response.data?.results?.map { transformToCharacter(it) }
+
+    companion object{
+        const val DOT = "."
+    }
 }
