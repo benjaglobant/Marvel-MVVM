@@ -22,7 +22,12 @@ import com.globant.marvelmvvm.util.Data
 import com.globant.marvelmvvm.util.Event
 import com.globant.marvelmvvm.util.Status
 import com.globant.marvelmvvm.viewmodel.SpecificCharacterViewModel
-import kotlinx.android.synthetic.main.fragment_specific_character.*
+import kotlinx.android.synthetic.main.fragment_specific_character.specific_character_fragment_loader
+import kotlinx.android.synthetic.main.fragment_specific_character.specific_character_fragment_name
+import kotlinx.android.synthetic.main.fragment_specific_character.specific_character_fragment_description
+import kotlinx.android.synthetic.main.fragment_specific_character.specific_character_fragment_character_id
+import kotlinx.android.synthetic.main.fragment_specific_character.specific_character_fragment_thumbnail
+import kotlinx.android.synthetic.main.fragment_specific_character.specific_character_fragment_background_image
 
 class SpecificCharacterFragment : Fragment() {
 
@@ -71,7 +76,7 @@ class SpecificCharacterFragment : Fragment() {
         specific_character_fragment_thumbnail.visibility = View.VISIBLE
         specific_character_fragment_character_id.visibility = View.VISIBLE
         specific_character_fragment_name.visibility = View.VISIBLE
-        specific_character_fragment_scroll_description.visibility = View.VISIBLE
+        specific_character_fragment_description.visibility = View.VISIBLE
 
         val requestOptions = RequestOptions()
         requestOptions
