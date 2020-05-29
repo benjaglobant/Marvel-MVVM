@@ -9,9 +9,13 @@
     <dimen name="text_size_character_id">25sp</dimen>
     <dimen name="margin_card_view_item">10dp</dimen>
     <dimen name="padding_card_view_item">6dp</dimen>
-    <dimen name="thumbnail_character_min_size">400dp</dimen>
+    <dimen name="card_view_thumbnail_character_min_size">400dp</dimen>
+    <dimen name="specific_character_fragment_thumbnail_character_min_size">350dp</dimen>
     <dimen name="corner_radius_card_view_item">20dp</dimen>
-    <dimen name="text_size_card_view_item_character_id">26sp</dimen>
+    <dimen name="text_size_card_view_item_character_id">24sp</dimen>
     <dimen name="padding_card_view_item_character_id">10dp</dimen>
     <dimen name="radius_character_id_background">10dp</dimen>
+    <dimen name="padding_dialog_insert_character_id">10dp</dimen>
+    <dimen name="margin_top_dialog_insert_character_id_button">20dp</dimen>
+    <dimen name="margin_specific_character_fragment_text_view">12dp</dimen>
 </resources>

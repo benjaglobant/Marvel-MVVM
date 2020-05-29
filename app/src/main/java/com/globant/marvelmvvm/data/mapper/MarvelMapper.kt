@@ -13,13 +13,25 @@ class MarvelMapper {
 
     private fun transformToCharacter(characterResponse: CharacterResponse): Character =
         characterResponse.let {
-            return Character(it.id, transformToThumbnail(it.thumbnail))
+            return Character(
+                it.id,
+                it.name,
+                getDescription(it.description),
+                transformToThumbnail(it.thumbnail))
         }
+
+    private fun getDescription(description: String): String{
+        if (description.isEmpty())
+            return INVALID_DESCRIPTION
+        else
+            return description
+    }
 
     fun transformToListOfCharacters(response: MarvelBaseResponse<DataBaseResponse<ArrayList<CharacterResponse>>>): List<Character>? =
         response.data?.results?.map { transformToCharacter(it) }
 
     companion object{
         const val DOT = "."
+        const val INVALID_DESCRIPTION = "Not description available"
     }
 }

@@ -4,5 +4,7 @@ import com.globant.marvelmvvm.util.Constants.EMPTY_STRING
 
 data class Character(
     val id: String = EMPTY_STRING,
+    val name: String = EMPTY_STRING,
+    val description: String = EMPTY_STRING,
     val image: String = EMPTY_STRING
 )
