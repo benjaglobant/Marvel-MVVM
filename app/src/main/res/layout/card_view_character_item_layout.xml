@@ -18,8 +18,8 @@
             android:id="@+id/all_characters_item_thumbnail"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:minHeight="@dimen/thumbnail_character_min_size"
-            android:minWidth="@dimen/thumbnail_character_min_size"/>
+            android:minHeight="@dimen/card_view_thumbnail_character_min_size"
+            android:minWidth="@dimen/card_view_thumbnail_character_min_size"/>
 
         <TextView
             android:id="@+id/all_characters_item_id"

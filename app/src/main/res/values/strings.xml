@@ -11,4 +11,8 @@
     <string name="string_first_character_id">FIRST CHARACTER ID: </string>
     <string name="string_number_of_characters">NUMBER OF CHARACTERS: </string>
     <string name="string_request_error">Error: The request could not be done</string>
+    <string name="string_insert_character_id">Please insert a character id:</string>
+    <string name="string_dialog_search_button">Search</string>
+    <string name="string_insert_character_id_error">Error: Insert a character id</string>
+    <string name="string_not_description_available">Not description available</string>
 </resources>

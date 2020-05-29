@@ -27,4 +27,20 @@ class MarvelService {
         }
         return Result.Failure(Exception(NOT_FOUND))
     }
+
+    fun getSpecificCharacterFromAPI(characterId: String): Result<List<Character>>{
+        try {
+            val callResponse = api.createService(MarvelApi::class.java).getSpecificCharacterRequest(characterId)
+            val response = callResponse.execute()
+            if (response.isSuccessful)
+                response.body()?.let {
+                    mapper.transformToListOfCharacters(it)
+                }.let {
+                    return Result.Success(it)
+                }
+        } catch (e: Exception) {
+            return Result.Failure(Exception(NOT_FOUND))
+        }
+        return Result.Failure(Exception(NOT_FOUND))
+    }
 }

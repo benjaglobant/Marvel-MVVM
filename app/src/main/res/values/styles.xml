@@ -30,11 +30,20 @@
         <item name="android:textSize">@dimen/text_size_toolbar_title</item>
     </style>
 
-    <style name="style_card_view_item_character_id">
-        <item name="android:background">@drawable/character_id_background</item>
+    <style name="style_base_text_view">
         <item name="android:paddingStart">@dimen/padding_card_view_item_character_id</item>
         <item name="android:paddingEnd">@dimen/padding_card_view_item_character_id</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">@dimen/text_size_card_view_item_character_id</item>
     </style>
+
+    <style name="style_card_view_item_character_id" parent="style_base_text_view">
+        <item name="android:layout_marginBottom">@dimen/margin_card_view_item</item>
+        <item name="android:background">@drawable/character_id_background</item>
+    </style>
+
+    <style name="style_specific_character_fragment_text_view" parent="style_base_text_view">
+        <item name="android:background">@drawable/specific_character_fragment_text_view_background</item>
+    </style>
+
 </resources>
