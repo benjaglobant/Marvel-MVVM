@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.globant.marvelmvvm.R
@@ -22,6 +23,7 @@ import com.globant.marvelmvvm.util.Data
 import com.globant.marvelmvvm.util.Event
 import com.globant.marvelmvvm.util.Status
 import com.globant.marvelmvvm.viewmodel.SpecificCharacterViewModel
+import kotlinx.android.synthetic.main.activity_main.activity_main_toolbar
 import kotlinx.android.synthetic.main.fragment_specific_character.specific_character_fragment_loader
 import kotlinx.android.synthetic.main.fragment_specific_character.specific_character_fragment_name
 import kotlinx.android.synthetic.main.fragment_specific_character.specific_character_fragment_description
@@ -55,6 +57,8 @@ class SpecificCharacterFragment : Fragment() {
 
         specificCharacterViewModel.getSpecificCharacterLiveData().observe(::getLifecycle, ::updateUI)
 
+        activity?.activity_main_toolbar?.title = getString(R.string.string_specific_character)
+
         specificCharacterViewModel.fetchSpecificCharacter()
     }
 
@@ -62,7 +66,7 @@ class SpecificCharacterFragment : Fragment() {
         when (data.peekContent().status) {
             Status.LOADING -> setLoaderState(View.VISIBLE)
             Status.RESPONSE_SUCCESS -> showSpecificCharacter(data.peekContent().data)
-            Status.RESPONSE_ERROR -> showError()
+            Status.RESPONSE_ERROR -> showError(data.peekContent().error)
         }
     }
 
@@ -98,8 +102,10 @@ class SpecificCharacterFragment : Fragment() {
         }
     }
 
-    private fun showError() {
-        Toast.makeText(this.context, getString(R.string.string_request_error), Toast.LENGTH_SHORT)
-            .show()
+    private fun showError(error: Exception?) {
+        error?.let{
+            Toast.makeText(this.context, "Error: ${it.message}", Toast.LENGTH_LONG).show()
+        }
+        this.findNavController().popBackStack(R.id.allCharactersFragment, false)
     }
 }

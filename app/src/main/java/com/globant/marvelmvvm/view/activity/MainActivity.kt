@@ -5,6 +5,7 @@ import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
+import androidx.navigation.NavOptions
 import androidx.navigation.Navigation
 import com.globant.marvelmvvm.R
 import com.globant.marvelmvvm.util.Constants.CHARACTER_ID
@@ -29,21 +30,21 @@ class MainActivity : AppCompatActivity(), OnNavigationItemSelectedListener {
         activity_main_navigation_view.setNavigationItemSelectedListener(this)
     }
 
-    private fun showFragment(title: Int, fragment: Int, args: Bundle? = null){
-        activity_main_toolbar.title = getString(title)
-        Navigation.findNavController(this, R.id.activity_main_active_fragment).navigate(fragment, args)
+    private fun showFragment(fragment: Int, args: Bundle? = null){
+        val navBuilder = NavOptions.Builder().setPopUpTo(R.id.allCharactersFragment, false).build()
+        Navigation.findNavController(this, R.id.activity_main_active_fragment).navigate(fragment, args, navBuilder)
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.allCharactersFragment -> {
-                showFragment(R.string.string_all_characters, R.id.allCharactersFragment)
+                showFragment(R.id.allCharactersFragment)
             }
             R.id.specificCharacterFragment -> {
                 val args = Bundle()
                 val dialog = InsertCharacterIdDialog {
                     args.putString(CHARACTER_ID, it)
-                    showFragment(R.string.string_specific_character, R.id.specificCharacterFragment, args)
+                    showFragment(R.id.specificCharacterFragment, args)
                 }
                 dialog.show(supportFragmentManager, DIALOG_TAG)
             }

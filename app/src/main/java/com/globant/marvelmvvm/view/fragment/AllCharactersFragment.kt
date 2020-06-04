@@ -21,9 +21,10 @@ import com.globant.marvelmvvm.util.Data
 import com.globant.marvelmvvm.util.Event
 import com.globant.marvelmvvm.util.Status
 import com.globant.marvelmvvm.viewmodel.AllCharactersViewModel
-import kotlinx.android.synthetic.main.fragment_all_characters.fragment_all_characters_recycler_view
-import kotlinx.android.synthetic.main.fragment_all_characters.fragment_all_characters_loader
+import kotlinx.android.synthetic.main.activity_main.activity_main_toolbar
 import kotlinx.android.synthetic.main.fragment_all_characters.fragment_all_characters_background_image
+import kotlinx.android.synthetic.main.fragment_all_characters.fragment_all_characters_loader
+import kotlinx.android.synthetic.main.fragment_all_characters.fragment_all_characters_recycler_view
 
 class AllCharactersFragment : Fragment() {
 
@@ -50,9 +51,11 @@ class AllCharactersFragment : Fragment() {
         allCharactersViewModel =
             ViewModelProvider(this, viewModelFactory {
                 AllCharactersViewModel(AllCharactersModel(MarvelService())) })
-                    .get(AllCharactersViewModel::class.java)
+                .get(AllCharactersViewModel::class.java)
 
         allCharactersViewModel.getAllCharactersLiveData().observe(::getLifecycle, ::updateUI)
+
+        activity?.activity_main_toolbar?.title = getString(R.string.string_all_characters)
 
         allCharactersViewModel.fetchAllCharacters()
     }
@@ -84,6 +87,7 @@ class AllCharactersFragment : Fragment() {
 
     private fun showError(){
         Toast.makeText(this.context, getString(R.string.string_request_error), Toast.LENGTH_SHORT).show()
+        fragment_all_characters_loader.visibility = View.INVISIBLE
     }
 
     private fun replaceFragment(characterId: String){
