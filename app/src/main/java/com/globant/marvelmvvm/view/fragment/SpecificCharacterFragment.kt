@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
@@ -21,6 +20,7 @@ import com.globant.marvelmvvm.util.Constants.EMPTY_STRING
 import com.globant.marvelmvvm.util.Constants.ZERO
 import com.globant.marvelmvvm.util.Data
 import com.globant.marvelmvvm.util.Event
+import com.globant.marvelmvvm.util.MarvelViewModelFactory.viewModelFactory
 import com.globant.marvelmvvm.util.Status
 import com.globant.marvelmvvm.viewmodel.SpecificCharacterViewModel
 import kotlinx.android.synthetic.main.activity_main.activity_main_toolbar
@@ -34,11 +34,6 @@ import kotlinx.android.synthetic.main.fragment_specific_character.specific_chara
 class SpecificCharacterFragment : Fragment() {
 
     private lateinit var specificCharacterViewModel: SpecificCharacterContract.ViewModel
-
-    private inline fun <VM : ViewModel> viewModelFactory(crossinline f: () -> VM) =
-        object : ViewModelProvider.Factory {
-            override fun <T : ViewModel> create(aClass: Class<T>): T = f() as T
-        }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -83,7 +78,6 @@ class SpecificCharacterFragment : Fragment() {
         specific_character_fragment_description.visibility = View.VISIBLE
 
         val requestOptions = RequestOptions()
-        requestOptions
             .placeholder(R.drawable.main_background)
             .error(R.drawable.error_image)
 
@@ -103,7 +97,7 @@ class SpecificCharacterFragment : Fragment() {
     }
 
     private fun showError(error: Exception?) {
-        error?.let{
+        error?.let {
             Toast.makeText(this.context, "Error: ${it.message}", Toast.LENGTH_LONG).show()
         }
         this.findNavController().popBackStack(R.id.allCharactersFragment, false)

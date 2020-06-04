@@ -13,6 +13,7 @@ import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.ObsoleteCoroutinesApi
 import kotlinx.coroutines.newSingleThreadContext
 import kotlinx.coroutines.runBlocking
@@ -44,12 +45,16 @@ class AllCharactersViewModelTest {
     private var invalidResult: Result.Failure = mock()
     private var exception: Exception = mock()
 
+    @ObsoleteCoroutinesApi
+    @ExperimentalCoroutinesApi
     @Before
-    fun setUp(){
+    fun setUp() {
         Dispatchers.setMain(mainThreadSurrogate)
         viewModel = AllCharactersViewModel(mockedModel)
     }
 
+    @ExperimentalCoroutinesApi
+    @ObsoleteCoroutinesApi
     @After
     fun after() {
         mainThreadSurrogate.close()
@@ -61,7 +66,8 @@ class AllCharactersViewModelTest {
         val liveDataUnderTest = viewModel.getAllCharactersLiveData().testObserver()
         val responseList = listOf(
             Data(status = Status.LOADING, data = null, error = null),
-            Data(status = Status.RESPONSE_ERROR, data = null, error = exception))
+            Data(status = Status.RESPONSE_ERROR, data = null, error = exception)
+        )
         whenever(mockedModel.getAllCharacters()).thenReturn(invalidResult)
         whenever(invalidResult.exception).thenReturn(exception)
         runBlocking {
@@ -74,11 +80,12 @@ class AllCharactersViewModelTest {
     }
 
     @Test
-    fun `when getAllCharacters returns success response`(){
+    fun `when getAllCharacters returns success response`() {
         val liveDataUnderTest = viewModel.getAllCharactersLiveData().testObserver()
         responseList = listOf(
             Data(status = Status.LOADING, data = null, error = null),
-            Data(status = Status.RESPONSE_SUCCESS, data = charactersResponse, error = null))
+            Data(status = Status.RESPONSE_SUCCESS, data = charactersResponse, error = null)
+        )
         whenever(mockedModel.getAllCharacters()).thenReturn(validResult)
         whenever(validResult.data).thenReturn(charactersResponse)
         runBlocking {
@@ -100,12 +107,9 @@ class AllCharactersViewModelTest {
         }
     }
 
-    private fun <T> LiveData<T>.testObserver() = TestObserver<T>()
-        .also {
-            observeForever(it)
-        }
+    private fun <T> LiveData<T>.testObserver() = TestObserver<T>().also { observeForever(it) }
 
-    companion object{
+    companion object {
         private const val UI_THREAD = "UI thread"
         private const val ZERO = 0
         private const val ONE = 1

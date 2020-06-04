@@ -26,14 +26,14 @@ class SpecificCharacterViewModel(private val model: SpecificCharacterContract.Mo
                 is Result.Failure -> {
                     mutableMainState.postValue(
                         Event(Data(
-                            status = Status.RESPONSE_ERROR,
-                            error = result.exception)))
+                                status = Status.RESPONSE_ERROR,
+                                error = result.exception)))
                 }
                 is Result.Success -> {
                     mutableMainState.postValue(
                         Event(Data(
-                            status = Status.RESPONSE_SUCCESS,
-                            data = result.data)))
+                                status = Status.RESPONSE_SUCCESS,
+                                data = result.data)))
                 }
             }
         }

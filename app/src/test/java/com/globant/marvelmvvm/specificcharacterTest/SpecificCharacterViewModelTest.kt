@@ -13,6 +13,7 @@ import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.ObsoleteCoroutinesApi
 import kotlinx.coroutines.newSingleThreadContext
 import kotlinx.coroutines.runBlocking
@@ -44,6 +45,8 @@ class SpecificCharacterViewModelTest {
     private var invalidResult: Result.Failure = mock()
     private var exception: Exception = mock()
 
+    @ObsoleteCoroutinesApi
+    @ExperimentalCoroutinesApi
     @Before
     fun setUp() {
         Dispatchers.setMain(mainThreadSurrogate)
@@ -51,6 +54,8 @@ class SpecificCharacterViewModelTest {
         viewModel = SpecificCharacterViewModel(mockedModel, characterId)
     }
 
+    @ExperimentalCoroutinesApi
+    @ObsoleteCoroutinesApi
     @After
     fun after() {
         mainThreadSurrogate.close()
@@ -95,7 +100,6 @@ class SpecificCharacterViewModelTest {
 
 
     class TestObserver<T> : Observer<T> {
-
         val observedValues = mutableListOf<T?>()
 
         override fun onChanged(value: T?) {
@@ -103,10 +107,7 @@ class SpecificCharacterViewModelTest {
         }
     }
 
-    private fun <T> LiveData<T>.testObserver() = TestObserver<T>()
-        .also {
-            observeForever(it)
-        }
+    private fun <T> LiveData<T>.testObserver() = TestObserver<T>().also { observeForever(it) }
 
     companion object {
         private const val UI_THREAD = "UI thread"
