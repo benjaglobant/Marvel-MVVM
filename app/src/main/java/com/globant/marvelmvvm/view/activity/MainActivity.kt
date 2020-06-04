@@ -14,6 +14,7 @@ import com.google.android.material.navigation.NavigationView.OnNavigationItemSel
 import kotlinx.android.synthetic.main.activity_main.activity_main_toolbar
 import kotlinx.android.synthetic.main.activity_main.activity_main_drawer_layout
 import kotlinx.android.synthetic.main.activity_main.activity_main_navigation_view
+import androidx.navigation.NavOptions
 
 class MainActivity : AppCompatActivity(), OnNavigationItemSelectedListener {
 
@@ -22,28 +23,35 @@ class MainActivity : AppCompatActivity(), OnNavigationItemSelectedListener {
         setContentView(R.layout.activity_main)
         setSupportActionBar(activity_main_toolbar)
 
-        val toggle = ActionBarDrawerToggle(this, activity_main_drawer_layout, activity_main_toolbar, ZERO, ZERO)
+        val toggle = ActionBarDrawerToggle(
+            this,
+            activity_main_drawer_layout,
+            activity_main_toolbar,
+            ZERO,
+            ZERO
+        )
         activity_main_drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
 
         activity_main_navigation_view.setNavigationItemSelectedListener(this)
     }
 
-    private fun showFragment(title: Int, fragment: Int, args: Bundle? = null){
-        activity_main_toolbar.title = getString(title)
-        Navigation.findNavController(this, R.id.activity_main_active_fragment).navigate(fragment, args)
+    private fun showFragment(fragment: Int, args: Bundle? = null) {
+        val navBuilder = NavOptions.Builder().setPopUpTo(R.id.allCharactersFragment, false).build()
+        Navigation.findNavController(this, R.id.activity_main_active_fragment)
+            .navigate(fragment, args, navBuilder)
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.allCharactersFragment -> {
-                showFragment(R.string.string_all_characters, R.id.allCharactersFragment)
+                showFragment(R.id.allCharactersFragment)
             }
             R.id.specificCharacterFragment -> {
                 val args = Bundle()
                 val dialog = InsertCharacterIdDialog {
                     args.putString(CHARACTER_ID, it)
-                    showFragment(R.string.string_specific_character, R.id.specificCharacterFragment, args)
+                    showFragment(R.id.specificCharacterFragment, args)
                 }
                 dialog.show(supportFragmentManager, DIALOG_TAG)
             }
@@ -52,7 +60,7 @@ class MainActivity : AppCompatActivity(), OnNavigationItemSelectedListener {
         return true
     }
 
-    companion object{
+    companion object {
         const val DIALOG_TAG = "Dialog Character ID"
     }
 }

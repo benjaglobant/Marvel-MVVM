@@ -28,19 +28,21 @@ import kotlinx.android.synthetic.main.fragment_specific_character.specific_chara
 import kotlinx.android.synthetic.main.fragment_specific_character.specific_character_fragment_character_id
 import kotlinx.android.synthetic.main.fragment_specific_character.specific_character_fragment_thumbnail
 import kotlinx.android.synthetic.main.fragment_specific_character.specific_character_fragment_background_image
+import kotlinx.android.synthetic.main.activity_main.activity_main_toolbar
+import androidx.navigation.fragment.findNavController
 
 class SpecificCharacterFragment : Fragment() {
 
     private lateinit var specificCharacterViewModel: SpecificCharacterContract.ViewModel
 
     private inline fun <VM : ViewModel> viewModelFactory(crossinline f: () -> VM) =
-        object : ViewModelProvider.Factory {
-            override fun <T : ViewModel> create(aClass: Class<T>): T = f() as T
-        }
+            object : ViewModelProvider.Factory {
+                override fun <T : ViewModel> create(aClass: Class<T>): T = f() as T
+            }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? = inflater.inflate(R.layout.fragment_specific_character, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -49,11 +51,13 @@ class SpecificCharacterFragment : Fragment() {
         arguments?.getString(CHARACTER_ID)?.let { characterId = it }
 
         specificCharacterViewModel =
-            ViewModelProvider(this, viewModelFactory {
-                SpecificCharacterViewModel(SpecificCharacterModel(MarvelService()), characterId)
-            }).get(SpecificCharacterViewModel::class.java)
+                ViewModelProvider(this, viewModelFactory {
+                    SpecificCharacterViewModel(SpecificCharacterModel(MarvelService()), characterId)
+                }).get(SpecificCharacterViewModel::class.java)
 
         specificCharacterViewModel.getSpecificCharacterLiveData().observe(::getLifecycle, ::updateUI)
+
+        activity?.activity_main_toolbar?.title = getString(R.string.string_specific_character)
 
         specificCharacterViewModel.fetchSpecificCharacter()
     }
@@ -62,7 +66,7 @@ class SpecificCharacterFragment : Fragment() {
         when (data.peekContent().status) {
             Status.LOADING -> setLoaderState(View.VISIBLE)
             Status.RESPONSE_SUCCESS -> showSpecificCharacter(data.peekContent().data)
-            Status.RESPONSE_ERROR -> showError()
+            Status.RESPONSE_ERROR -> showError(data.peekContent().error)
         }
     }
 
@@ -79,9 +83,8 @@ class SpecificCharacterFragment : Fragment() {
         specific_character_fragment_description.visibility = View.VISIBLE
 
         val requestOptions = RequestOptions()
-        requestOptions
-            .placeholder(R.drawable.main_background)
-            .error(R.drawable.error_image)
+                .placeholder(R.drawable.main_background)
+                .error(R.drawable.error_image)
 
         data?.get(ZERO).let {
             specific_character_fragment_character_id.text = it?.id
@@ -91,15 +94,17 @@ class SpecificCharacterFragment : Fragment() {
             val thumbnail = it?.image
             context?.let { context ->
                 Glide.with(context)
-                    .applyDefaultRequestOptions(requestOptions)
-                    .load(thumbnail)
-                    .into(specific_character_fragment_thumbnail)
+                        .applyDefaultRequestOptions(requestOptions)
+                        .load(thumbnail)
+                        .into(specific_character_fragment_thumbnail)
             }
         }
     }
 
-    private fun showError() {
-        Toast.makeText(this.context, getString(R.string.string_request_error), Toast.LENGTH_SHORT)
-            .show()
+    private fun showError(error: Exception?) {
+        error?.let {
+            Toast.makeText(this.context, "Error: ${it.message}", Toast.LENGTH_SHORT).show()
+        }
+        this.findNavController().popBackStack(R.id.allCharactersFragment, false)
     }
 }

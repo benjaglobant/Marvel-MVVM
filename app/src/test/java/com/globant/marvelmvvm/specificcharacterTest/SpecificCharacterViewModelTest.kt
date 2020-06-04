@@ -12,10 +12,7 @@ import com.globant.marvelmvvm.viewmodel.SpecificCharacterViewModel
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.ObsoleteCoroutinesApi
-import kotlinx.coroutines.newSingleThreadContext
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.*
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.setMain
 import org.junit.After
@@ -44,6 +41,8 @@ class SpecificCharacterViewModelTest {
     private var invalidResult: Result.Failure = mock()
     private var exception: Exception = mock()
 
+    @ObsoleteCoroutinesApi
+    @ExperimentalCoroutinesApi
     @Before
     fun setUp() {
         Dispatchers.setMain(mainThreadSurrogate)
@@ -51,6 +50,8 @@ class SpecificCharacterViewModelTest {
         viewModel = SpecificCharacterViewModel(mockedModel, characterId)
     }
 
+    @ExperimentalCoroutinesApi
+    @ObsoleteCoroutinesApi
     @After
     fun after() {
         mainThreadSurrogate.close()
@@ -70,9 +71,18 @@ class SpecificCharacterViewModelTest {
             viewModel.fetchSpecificCharacter().join()
         }
         verify(mockedModel).getSpecificCharacter(characterId)
-        assertEquals(responseList[ZERO].status, liveDataUnderTest.observedValues[ZERO]?.peekContent()?.status)
-        assertEquals(responseList[ONE].status, liveDataUnderTest.observedValues[ONE]?.peekContent()?.status)
-        assertEquals(responseList[ONE].error, liveDataUnderTest.observedValues[ONE]?.peekContent()?.error)
+        assertEquals(
+            responseList[ZERO].status,
+            liveDataUnderTest.observedValues[ZERO]?.peekContent()?.status
+        )
+        assertEquals(
+            responseList[ONE].status,
+            liveDataUnderTest.observedValues[ONE]?.peekContent()?.status
+        )
+        assertEquals(
+            responseList[ONE].error,
+            liveDataUnderTest.observedValues[ONE]?.peekContent()?.error
+        )
     }
 
     @Test
@@ -88,9 +98,18 @@ class SpecificCharacterViewModelTest {
             viewModel.fetchSpecificCharacter().join()
         }
         verify(mockedModel).getSpecificCharacter(characterId)
-        assertEquals(responseList[ZERO].status, liveDataUnderTest.observedValues[ZERO]?.peekContent()?.status)
-        assertEquals(responseList[ONE].status, liveDataUnderTest.observedValues[ONE]?.peekContent()?.status)
-        assertEquals(responseList[ONE].data, liveDataUnderTest.observedValues[ONE]?.peekContent()?.data)
+        assertEquals(
+            responseList[ZERO].status,
+            liveDataUnderTest.observedValues[ZERO]?.peekContent()?.status
+        )
+        assertEquals(
+            responseList[ONE].status,
+            liveDataUnderTest.observedValues[ONE]?.peekContent()?.status
+        )
+        assertEquals(
+            responseList[ONE].data,
+            liveDataUnderTest.observedValues[ONE]?.peekContent()?.data
+        )
     }
 
 
