@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,6 +18,7 @@ import com.globant.marvelmvvm.util.AllCharactersRecyclerViewAdapter
 import com.globant.marvelmvvm.util.Constants.CHARACTER_ID
 import com.globant.marvelmvvm.util.Data
 import com.globant.marvelmvvm.util.Event
+import com.globant.marvelmvvm.util.MarvelViewModelFactory.viewModelFactory
 import com.globant.marvelmvvm.util.Status
 import com.globant.marvelmvvm.viewmodel.AllCharactersViewModel
 import kotlinx.android.synthetic.main.activity_main.activity_main_toolbar
@@ -29,14 +29,9 @@ import kotlinx.android.synthetic.main.fragment_all_characters.fragment_all_chara
 class AllCharactersFragment : Fragment() {
 
     private lateinit var allCharactersViewModel: AllCharactersContract.ViewModel
-    private var allCharactersAdapter = AllCharactersRecyclerViewAdapter{characterId ->
+    private var allCharactersAdapter = AllCharactersRecyclerViewAdapter { characterId ->
         replaceFragment(characterId)
     }
-
-    private inline fun <VM : ViewModel> viewModelFactory(crossinline f: () -> VM) =
-        object : ViewModelProvider.Factory {
-            override fun <T : ViewModel> create(aClass: Class<T>):T = f() as T
-        }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -50,7 +45,8 @@ class AllCharactersFragment : Fragment() {
 
         allCharactersViewModel =
             ViewModelProvider(this, viewModelFactory {
-                AllCharactersViewModel(AllCharactersModel(MarvelService())) })
+                AllCharactersViewModel(AllCharactersModel(MarvelService()))
+            })
                 .get(AllCharactersViewModel::class.java)
 
         allCharactersViewModel.getAllCharactersLiveData().observe(::getLifecycle, ::updateUI)
@@ -61,14 +57,14 @@ class AllCharactersFragment : Fragment() {
     }
 
     private fun updateUI(data: Event<Data<List<Character>>>) {
-        when(data.peekContent().status){
+        when (data.peekContent().status) {
             Status.LOADING -> setLoaderState(View.VISIBLE)
             Status.RESPONSE_SUCCESS -> showAllCharacters(data.peekContent().data)
             Status.RESPONSE_ERROR -> showError()
         }
     }
 
-    private fun setLoaderState(state: Int){
+    private fun setLoaderState(state: Int) {
         fragment_all_characters_loader.visibility = state
         fragment_all_characters_background_image.visibility = state
     }
@@ -85,12 +81,12 @@ class AllCharactersFragment : Fragment() {
         }
     }
 
-    private fun showError(){
+    private fun showError() {
         Toast.makeText(this.context, getString(R.string.string_request_error), Toast.LENGTH_SHORT).show()
         fragment_all_characters_loader.visibility = View.INVISIBLE
     }
 
-    private fun replaceFragment(characterId: String){
+    private fun replaceFragment(characterId: String) {
         val args = Bundle()
         args.putString(CHARACTER_ID, characterId)
         this.findNavController().navigate(R.id.specificCharacterFragment, args)
