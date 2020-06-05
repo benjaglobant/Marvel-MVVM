@@ -32,10 +32,9 @@ class AllCharactersModelTest {
     }
 
     @Test
-    fun `call getAllCharactersFromAPI returns failure result`(){
+    fun `call getAllCharactersFromAPI returns failure result`() {
         whenever(mockedService.getAllCharactersFromAPI()).thenReturn(invalidResult)
         assertEquals(invalidResult, model.getAllCharacters())
         verify(mockedService).getAllCharactersFromAPI()
     }
-
 }

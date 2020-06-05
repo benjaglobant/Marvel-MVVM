@@ -17,10 +17,11 @@ class MarvelMapper {
                 it.id,
                 it.name,
                 getDescription(it.description),
-                transformToThumbnail(it.thumbnail))
+                transformToThumbnail(it.thumbnail)
+            )
         }
 
-    private fun getDescription(description: String): String{
+    private fun getDescription(description: String): String {
         return if (description.isEmpty())
             INVALID_DESCRIPTION
         else
@@ -30,7 +31,7 @@ class MarvelMapper {
     fun transformToListOfCharacters(response: MarvelBaseResponse<DataBaseResponse<ArrayList<CharacterResponse>>>): List<Character>? =
         response.data?.results?.map { transformToCharacter(it) }
 
-    companion object{
+    companion object {
         const val DOT = "."
         const val INVALID_DESCRIPTION = "Not description available"
     }

@@ -15,5 +15,5 @@ interface AllCharactersContract {
 
     interface Model {
         fun getAllCharacters(): Result<List<Character>>
-}
+    }
 }

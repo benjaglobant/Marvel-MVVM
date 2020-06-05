@@ -10,10 +10,10 @@ import com.globant.marvelmvvm.R
 import kotlinx.android.synthetic.main.dialog_insert_character_id.dialog_insert_character_id_edit_text
 import kotlinx.android.synthetic.main.dialog_insert_character_id.dialog_search_button
 
-class InsertCharacterIdDialog(private val onSearchButtonClicked: (String) -> Unit): DialogFragment() {
+class InsertCharacterIdDialog(private val onSearchButtonClicked: (String) -> Unit) : DialogFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
-        activity?.layoutInflater?.inflate(R.layout.dialog_insert_character_id, container,false)
+        activity?.layoutInflater?.inflate(R.layout.dialog_insert_character_id, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
