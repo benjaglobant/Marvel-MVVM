@@ -49,10 +49,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_specific_character_fragment_text_view"
             android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@id/specific_character_fragment_name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/specific_character_fragment_thumbnail"
-            app:layout_constraintBottom_toTopOf="@id/specific_character_fragment_name"/>
+            app:layout_constraintTop_toBottomOf="@id/specific_character_fragment_thumbnail" />
 
         <TextView
             android:id="@+id/specific_character_fragment_name"
@@ -61,18 +61,18 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_specific_character_fragment_text_view"
             android:visibility="invisible"
-            app:layout_constraintTop_toBottomOf="@id/specific_character_fragment_character_id"
             app:layout_constraintBottom_toTopOf="@id/specific_character_fragment_description"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/specific_character_fragment_character_id" />
 
         <TextView
             android:id="@+id/specific_character_fragment_description"
             style="@style/style_specific_character_fragment_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_specific_character_fragment_text_view"
             android:layout_marginStart="@dimen/margin_specific_character_fragment_text_view"
+            android:layout_marginTop="@dimen/margin_specific_character_fragment_text_view"
             android:layout_marginEnd="@dimen/margin_specific_character_fragment_text_view"
             android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"

@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity(), OnNavigationItemSelectedListener {
         activity_main_navigation_view.setNavigationItemSelectedListener(this)
     }
 
-    private fun showFragment(fragment: Int, args: Bundle? = null){
+    private fun showFragment(fragment: Int, args: Bundle? = null) {
         val navBuilder = NavOptions.Builder().setPopUpTo(R.id.allCharactersFragment, false).build()
         Navigation.findNavController(this, R.id.activity_main_active_fragment).navigate(fragment, args, navBuilder)
     }
@@ -53,7 +53,7 @@ class MainActivity : AppCompatActivity(), OnNavigationItemSelectedListener {
         return true
     }
 
-    companion object{
+    companion object {
         const val DIALOG_TAG = "Dialog Character ID"
     }
 }

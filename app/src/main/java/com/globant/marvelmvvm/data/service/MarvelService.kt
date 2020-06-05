@@ -28,7 +28,7 @@ class MarvelService {
         return Result.Failure(Exception(NOT_FOUND))
     }
 
-    fun getSpecificCharacterFromAPI(characterId: String): Result<List<Character>>{
+    fun getSpecificCharacterFromAPI(characterId: String): Result<List<Character>> {
         try {
             val callResponse = api.createService(MarvelApi::class.java).getSpecificCharacterRequest(characterId)
             val response = callResponse.execute()

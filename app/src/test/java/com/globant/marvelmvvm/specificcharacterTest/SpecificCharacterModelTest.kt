@@ -40,7 +40,7 @@ class SpecificCharacterModelTest {
         verify(mockedService).getSpecificCharacterFromAPI(characterId)
     }
 
-    companion object{
+    companion object {
         const val TEST_CHARACTER_ID = "1011334"
     }
 }
