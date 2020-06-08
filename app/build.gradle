@@ -17,7 +17,6 @@ android {
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -31,18 +30,19 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(path: ':di')
+    implementation project(path: ':domain')
 
     def lib = rootProject.ext.generalDependencies
 
     implementation lib.kotlin
     implementation lib.appcompat
-    implementation lib.coreKtx
+    implementation lib.corektx
     implementation lib.constraintlayout
-    implementation lib.retrofit
-    implementation lib.retrofit
-    implementation lib.retrofitgson
     implementation lib.androidxviewmodel
     implementation lib.androidxlifecycle
+    implementation lib.retrofit
+    implementation lib.retrofitgson
     implementation lib.androidxnavigationfragment
     implementation lib.androidxnavigationui
     implementation lib.kotlinxcoroutinesandroid
@@ -56,4 +56,6 @@ dependencies {
     testImplementation lib.mockitokotlin2
     testImplementation lib.mockitocore
     testImplementation lib.mockitoinline
+    androidTestImplementation lib.androidxespressocore
+    androidTestImplementation lib.androidxjunit
 }
