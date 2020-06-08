@@ -1,4 +1,4 @@
-package com.globant.marvelmvvm.util
+package com.globant.domain.util
 
 object Constants {
     const val EMPTY_STRING = ""

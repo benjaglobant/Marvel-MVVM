@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.globant.marvelmvvm.R
-import com.globant.marvelmvvm.data.entity.Character
+import com.globant.domain.entity.Character
 import kotlinx.android.synthetic.main.card_view_character_item_layout.view.all_characters_item_id
 import kotlinx.android.synthetic.main.card_view_character_item_layout.view.all_characters_item_thumbnail
 

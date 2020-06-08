@@ -11,13 +11,13 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.globant.marvelmvvm.R
-import com.globant.marvelmvvm.data.entity.Character
+import com.globant.domain.entity.Character
 import com.globant.marvelmvvm.contract.SpecificCharacterContract
 import com.globant.marvelmvvm.data.service.MarvelService
 import com.globant.marvelmvvm.model.SpecificCharacterModel
-import com.globant.marvelmvvm.util.Constants.CHARACTER_ID
-import com.globant.marvelmvvm.util.Constants.EMPTY_STRING
-import com.globant.marvelmvvm.util.Constants.ZERO
+import com.globant.domain.util.Constants.CHARACTER_ID
+import com.globant.domain.util.Constants.EMPTY_STRING
+import com.globant.domain.util.Constants.ZERO
 import com.globant.marvelmvvm.util.Data
 import com.globant.marvelmvvm.util.Event
 import com.globant.marvelmvvm.util.MarvelViewModelFactory.viewModelFactory
@@ -45,6 +45,7 @@ class SpecificCharacterFragment : Fragment() {
         var characterId = EMPTY_STRING
         arguments?.getString(CHARACTER_ID)?.let { characterId = it }
 
+        //TODO fix when Koin implemented
         specificCharacterViewModel =
             ViewModelProvider(this, viewModelFactory {
                 SpecificCharacterViewModel(SpecificCharacterModel(MarvelService()), characterId)
