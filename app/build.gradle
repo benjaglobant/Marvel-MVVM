@@ -37,7 +37,7 @@ dependencies {
 
     implementation lib.kotlin
     implementation lib.appcompat
-    implementation lib.coreKtx
+    implementation lib.corektx
     implementation lib.constraintlayout
     implementation lib.androidxviewmodel
     implementation lib.androidxlifecycle
@@ -56,4 +56,6 @@ dependencies {
     testImplementation lib.mockitokotlin2
     testImplementation lib.mockitocore
     testImplementation lib.mockitoinline
+    androidTestImplementation lib.androidxespressocore
+    androidTestImplementation lib.androidxjunit
 }

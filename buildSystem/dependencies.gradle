@@ -22,11 +22,13 @@ ext {
     mockitoinline = "2.21.0"
     koinandroidxviewmodel = "2.1.5"
     kointest = "2.1.5"
+    androidxespressocore = "3.2.0"
+    androidxjunit = "1.1.1"
 
     generalDependencies = [
             kotlin                    : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlin}",
             appcompat                 : "androidx.appcompat:appcompat:${appcompat}",
-            coreKtx                   : "androidx.core:core-ktx:${corektx}",
+            corektx                   : "androidx.core:core-ktx:${corektx}",
             constraintlayout          : "androidx.constraintlayout:constraintlayout:${constraintlayout}",
             retrofit                  : "com.squareup.retrofit2:retrofit:${retrofit}",
             retrofitgson              : "com.squareup.retrofit2:converter-gson:${retrofitgson}",
@@ -46,6 +48,8 @@ ext {
             mockitocore               : "org.mockito:mockito-core:${mockitocore}",
             mockitoinline             : "org.mockito:mockito-inline:${mockitoinline}",
             koinandroidxviewmodel     : "org.koin:koin-androidx-viewmodel:${koinandroidxviewmodel}",
-            kointest                  : "org.koin:koin-test:${kointest}"
+            kointest                  : "org.koin:koin-test:${kointest}",
+            androidxjunit             : "androidx.test.ext:junit:${androidxjunit}",
+            androidxespressocore      : "androidx.test.espresso:espresso-core:${androidxespressocore}"
     ]
 }
