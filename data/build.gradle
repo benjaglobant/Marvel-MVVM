@@ -1,4 +1,4 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
@@ -12,7 +12,6 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.globant.marvel_mvvm"
         minSdkVersion 23
         targetSdkVersion 29
         versionCode 1
@@ -30,30 +29,11 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation project(path: ':di')
     implementation project(path: ':domain')
 
     def lib = rootProject.ext.generalDependencies
 
     implementation lib.kotlin
     implementation lib.appcompat
-    implementation lib.coreKtx
-    implementation lib.constraintlayout
-    implementation lib.androidxviewmodel
-    implementation lib.androidxlifecycle
-    implementation lib.retrofit
-    implementation lib.retrofitgson
-    implementation lib.androidxnavigationfragment
-    implementation lib.androidxnavigationui
-    implementation lib.kotlinxcoroutinesandroid
-    implementation lib.kotlinxcoroutinescore
-    implementation lib.recyclerview
-    implementation lib.cardview
-    implementation lib.glide
-    testImplementation lib.kotlinxcoroutinestest
-    testImplementation lib.coretest
     testImplementation lib.junit
-    testImplementation lib.mockitokotlin2
-    testImplementation lib.mockitocore
-    testImplementation lib.mockitoinline
 }

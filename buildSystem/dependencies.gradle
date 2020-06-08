@@ -20,6 +20,8 @@ ext {
     mockitokotlin2 = "2.2.0"
     mockitocore = "2.28.2"
     mockitoinline = "2.21.0"
+    koinandroidxviewmodel = "2.1.5"
+    kointest = "2.1.5"
 
     generalDependencies = [
             kotlin                    : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlin}",
@@ -42,6 +44,8 @@ ext {
             junit                     : "junit:junit:${junit}",
             mockitokotlin2            : "com.nhaarman.mockitokotlin2:mockito-kotlin:${mockitokotlin2}",
             mockitocore               : "org.mockito:mockito-core:${mockitocore}",
-            mockitoinline             : "org.mockito:mockito-inline:${mockitoinline}"
+            mockitoinline             : "org.mockito:mockito-inline:${mockitoinline}",
+            koinandroidxviewmodel     : "org.koin:koin-androidx-viewmodel:${koinandroidxviewmodel}",
+            kointest                  : "org.koin:koin-test:${kointest}"
     ]
 }

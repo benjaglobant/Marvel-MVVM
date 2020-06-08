@@ -1,2 +1,5 @@
+include ':di'
+include ':data'
+include ':domain'
 rootProject.name='Marvel-MVVM'
 include ':app'
