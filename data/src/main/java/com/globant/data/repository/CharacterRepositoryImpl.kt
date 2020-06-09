@@ -12,9 +12,7 @@ class CharacterRepositoryImpl(private val characterService: CharactersService) :
         characterService.getAllCharacters().let {
             return when (it) {
                 is Result.Success -> it
-
                 is Result.Failure -> Result.Failure(Exception(NOT_FOUND))
-
                 else -> Result.Failure(Exception(NOT_FOUND))
             }
         }
@@ -25,9 +23,7 @@ class CharacterRepositoryImpl(private val characterService: CharactersService) :
             return when (it) {
                 is Result.Success -> it
                 is Result.Failure -> Result.Failure(Exception(NOT_FOUND))
-
                 else -> Result.Failure(Exception(NOT_FOUND))
-
             }
         }
     }
