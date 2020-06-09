@@ -1,18 +1,19 @@
-package com.globant.marvelmvvm.data.service
+package com.globant.data.service
 
 import com.globant.domain.entity.Character
-import com.globant.marvelmvvm.data.mapper.MarvelMapper
-import com.globant.marvelmvvm.data.service.api.MarvelApi
-import com.globant.marvelmvvm.data.service.requestgenerator.MarvelRequestGenerator
+import com.globant.data.mapper.CharacterMapper
+import com.globant.data.service.api.MarvelApi
+import com.globant.data.service.requestgenerator.MarvelRequestGenerator
+import com.globant.domain.service.CharactersService
 import com.globant.domain.util.Constants.NOT_FOUND
 import com.globant.domain.util.Result
 
-class MarvelService {
+class CharacterServiceImpl: CharactersService {
 
     private val api = MarvelRequestGenerator()
-    private val mapper = MarvelMapper()
+    private val mapper = CharacterMapper()
 
-    fun getAllCharactersFromAPI(): Result<List<Character>> {
+    override fun getAllCharacters(): Result<List<Character>> {
         try {
             val callResponse = api.createService(MarvelApi::class.java).getAllCharactersRequest()
             val response = callResponse.execute()
@@ -28,7 +29,7 @@ class MarvelService {
         return Result.Failure(Exception(NOT_FOUND))
     }
 
-    fun getSpecificCharacterFromAPI(characterId: String): Result<List<Character>> {
+    override fun getSpecificCharacter(characterId: String): Result<List<Character>> {
         try {
             val callResponse = api.createService(MarvelApi::class.java).getSpecificCharacterRequest(characterId)
             val response = callResponse.execute()

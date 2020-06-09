@@ -1,12 +1,12 @@
-package com.globant.marvelmvvm.data.mapper
+package com.globant.data.mapper
 
-import com.globant.marvelmvvm.data.service.response.CharacterResponse
-import com.globant.marvelmvvm.data.service.response.ThumbnailResponse
+import com.globant.data.service.response.CharacterResponse
+import com.globant.data.service.response.DataBaseResponse
+import com.globant.data.service.response.MarvelBaseResponse
+import com.globant.data.service.response.ThumbnailResponse
 import com.globant.domain.entity.Character
-import com.globant.marvelmvvm.data.service.response.DataBaseResponse
-import com.globant.marvelmvvm.data.service.response.MarvelBaseResponse
 
-class MarvelMapper {
+class CharacterMapper {
 
     private fun transformToThumbnail(thumbnailResponse: ThumbnailResponse): String =
         "${thumbnailResponse.path}$DOT${thumbnailResponse.extension}"

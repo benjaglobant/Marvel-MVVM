@@ -13,7 +13,6 @@ import com.globant.marvelmvvm.R
 import com.globant.marvelmvvm.contract.AllCharactersContract
 import com.globant.domain.entity.Character
 import com.globant.domain.usecase.implementation.GetAllCharactersUseCaseImpl
-import com.globant.marvelmvvm.data.service.MarvelService
 import com.globant.marvelmvvm.model.AllCharactersModel
 import com.globant.marvelmvvm.util.AllCharactersRecyclerViewAdapter
 import com.globant.domain.util.Constants.CHARACTER_ID

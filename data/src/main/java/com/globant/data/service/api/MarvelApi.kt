@@ -1,8 +1,8 @@
-package com.globant.marvelmvvm.data.service.api
+package com.globant.data.service.api
 
-import com.globant.marvelmvvm.data.service.response.MarvelBaseResponse
-import com.globant.marvelmvvm.data.service.response.CharacterResponse
-import com.globant.marvelmvvm.data.service.response.DataBaseResponse
+import com.globant.data.service.response.MarvelBaseResponse
+import com.globant.data.service.response.CharacterResponse
+import com.globant.data.service.response.DataBaseResponse
 import com.globant.domain.util.Constants.CHARACTER_ID
 import retrofit2.Call
 import retrofit2.http.GET

@@ -1,4 +1,4 @@
-package com.globant.marvelmvvm.data.service.response
+package com.globant.data.service.response
 
 data class MarvelBaseResponse<T>(
     val code: Int,

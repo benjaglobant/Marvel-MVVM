@@ -41,8 +41,6 @@ dependencies {
     implementation lib.constraintlayout
     implementation lib.androidxviewmodel
     implementation lib.androidxlifecycle
-    implementation lib.retrofit
-    implementation lib.retrofitgson
     implementation lib.androidxnavigationfragment
     implementation lib.androidxnavigationui
     implementation lib.kotlinxcoroutinesandroid

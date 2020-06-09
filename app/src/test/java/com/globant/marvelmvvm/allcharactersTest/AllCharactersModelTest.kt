@@ -2,7 +2,7 @@ package com.globant.marvelmvvm.allcharactersTest
 
 import com.globant.marvelmvvm.contract.AllCharactersContract
 import com.globant.domain.entity.Character
-import com.globant.marvelmvvm.data.service.MarvelService
+import com.globant.data.service.MarvelService
 import com.globant.marvelmvvm.model.AllCharactersModel
 import com.globant.domain.util.Result
 import com.nhaarman.mockitokotlin2.mock
