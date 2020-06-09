@@ -11,11 +11,12 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.globant.marvelmvvm.R
 import com.globant.marvelmvvm.contract.AllCharactersContract
-import com.globant.marvelmvvm.data.entity.Character
+import com.globant.domain.entity.Character
+import com.globant.domain.usecase.implementation.GetAllCharactersUseCaseImpl
 import com.globant.marvelmvvm.data.service.MarvelService
 import com.globant.marvelmvvm.model.AllCharactersModel
 import com.globant.marvelmvvm.util.AllCharactersRecyclerViewAdapter
-import com.globant.marvelmvvm.util.Constants.CHARACTER_ID
+import com.globant.domain.util.Constants.CHARACTER_ID
 import com.globant.marvelmvvm.util.Data
 import com.globant.marvelmvvm.util.Event
 import com.globant.marvelmvvm.util.MarvelViewModelFactory.viewModelFactory
@@ -43,6 +44,7 @@ class AllCharactersFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //TODO fix when Koin implemented
         allCharactersViewModel =
             ViewModelProvider(this, viewModelFactory {
                 AllCharactersViewModel(AllCharactersModel(MarvelService()))

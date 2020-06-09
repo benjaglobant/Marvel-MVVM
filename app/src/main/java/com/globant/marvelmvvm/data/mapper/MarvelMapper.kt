@@ -2,7 +2,7 @@ package com.globant.marvelmvvm.data.mapper
 
 import com.globant.marvelmvvm.data.service.response.CharacterResponse
 import com.globant.marvelmvvm.data.service.response.ThumbnailResponse
-import com.globant.marvelmvvm.data.entity.Character
+import com.globant.domain.entity.Character
 import com.globant.marvelmvvm.data.service.response.DataBaseResponse
 import com.globant.marvelmvvm.data.service.response.MarvelBaseResponse
 

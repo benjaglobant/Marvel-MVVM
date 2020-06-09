@@ -5,8 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.globant.marvelmvvm.contract.SpecificCharacterContract
-import com.globant.marvelmvvm.data.entity.Character
-import com.globant.marvelmvvm.util.Result
+import com.globant.domain.entity.Character
+import com.globant.domain.util.Result
 import com.globant.marvelmvvm.util.Data
 import com.globant.marvelmvvm.util.Event
 import com.globant.marvelmvvm.util.Status
