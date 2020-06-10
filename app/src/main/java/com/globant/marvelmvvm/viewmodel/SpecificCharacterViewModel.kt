@@ -14,12 +14,12 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class SpecificCharacterViewModel(private val model: SpecificCharacterContract.Model, private val characterId: String): ViewModel(), SpecificCharacterContract.ViewModel {
+class SpecificCharacterViewModel(private val model: SpecificCharacterContract.Model): ViewModel(), SpecificCharacterContract.ViewModel {
 
     private var mutableMainState: MutableLiveData<Event<Data<List<Character>>>> = MutableLiveData()
     override fun getSpecificCharacterLiveData(): LiveData<Event<Data<List<Character>>>> = mutableMainState
 
-    override fun fetchSpecificCharacter()= viewModelScope.launch {
+    override fun fetchSpecificCharacter(characterId: String)= viewModelScope.launch {
         mutableMainState.postValue(Event(Data(status = Status.LOADING)))
         withContext(Dispatchers.IO) { model.getSpecificCharacter(characterId) }.let { result ->
             when (result) {

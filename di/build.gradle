@@ -34,6 +34,9 @@ dependencies {
     implementation lib.kotlin
     implementation lib.appcompat
     implementation lib.corektx
+    implementation lib.koinandroidxviewmodel
+    implementation lib.koinandroid
+    implementation lib.koinandroidxscope
     testImplementation lib.junit
     androidTestImplementation lib.androidxespressocore
     androidTestImplementation lib.androidxjunit

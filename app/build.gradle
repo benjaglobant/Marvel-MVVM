@@ -48,6 +48,9 @@ dependencies {
     implementation lib.recyclerview
     implementation lib.cardview
     implementation lib.glide
+    implementation lib.koinandroidxviewmodel
+    implementation lib.koinandroid
+    implementation lib.koinandroidxscope
     testImplementation lib.kotlinxcoroutinestest
     testImplementation lib.coretest
     testImplementation lib.junit

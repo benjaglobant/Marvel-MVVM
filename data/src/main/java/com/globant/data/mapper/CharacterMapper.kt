@@ -1,6 +1,7 @@
 package com.globant.data.mapper
 
 import com.globant.data.service.response.CharacterResponse
+import com.globant.data.service.response.CharactersBaseResponse
 import com.globant.data.service.response.MarvelBaseResponse
 import com.globant.data.service.response.ThumbnailResponse
 import com.globant.domain.entity.Character
@@ -27,8 +28,8 @@ class CharacterMapper {
             description
     }
 
-    fun transformToListOfCharacters(response: MarvelBaseResponse<ArrayList<CharacterResponse>>): List<Character>? =
-        response.data?.map { transformToCharacter(it) }
+    fun transformToListOfCharacters(response: MarvelBaseResponse<CharactersBaseResponse>): List<Character>? =
+        response.data?.characters?.map { transformToCharacter(it) }
 
     companion object {
         const val DOT = "."

@@ -10,7 +10,7 @@ import kotlinx.coroutines.Job
 interface SpecificCharacterContract {
     interface ViewModel {
         fun getSpecificCharacterLiveData(): LiveData<Event<Data<List<Character>>>>
-        fun fetchSpecificCharacter(): Job
+        fun fetchSpecificCharacter(characterId: String): Job
     }
 
     interface Model {
