@@ -13,7 +13,6 @@ import com.bumptech.glide.request.RequestOptions
 import com.globant.marvelmvvm.R
 import com.globant.domain.entity.Character
 import com.globant.marvelmvvm.contract.SpecificCharacterContract
-import com.globant.marvelmvvm.data.service.MarvelService
 import com.globant.marvelmvvm.model.SpecificCharacterModel
 import com.globant.domain.util.Constants.CHARACTER_ID
 import com.globant.domain.util.Constants.EMPTY_STRING

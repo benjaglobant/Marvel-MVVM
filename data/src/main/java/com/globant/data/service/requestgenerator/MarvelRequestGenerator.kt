@@ -1,4 +1,4 @@
-package com.globant.marvelmvvm.data.service.requestgenerator
+package com.globant.data.service.requestgenerator
 
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
