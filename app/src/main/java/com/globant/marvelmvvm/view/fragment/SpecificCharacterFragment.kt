@@ -6,20 +6,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.globant.marvelmvvm.R
 import com.globant.domain.entity.Character
-import com.globant.marvelmvvm.contract.SpecificCharacterContract
-import com.globant.marvelmvvm.model.SpecificCharacterModel
 import com.globant.domain.util.Constants.CHARACTER_ID
 import com.globant.domain.util.Constants.EMPTY_STRING
 import com.globant.domain.util.Constants.ZERO
 import com.globant.marvelmvvm.util.Data
 import com.globant.marvelmvvm.util.Event
-import com.globant.marvelmvvm.util.MarvelViewModelFactory.viewModelFactory
 import com.globant.marvelmvvm.util.Status
 import com.globant.marvelmvvm.viewmodel.SpecificCharacterViewModel
 import kotlinx.android.synthetic.main.activity_main.activity_main_toolbar
@@ -29,10 +25,11 @@ import kotlinx.android.synthetic.main.fragment_specific_character.specific_chara
 import kotlinx.android.synthetic.main.fragment_specific_character.specific_character_fragment_character_id
 import kotlinx.android.synthetic.main.fragment_specific_character.specific_character_fragment_thumbnail
 import kotlinx.android.synthetic.main.fragment_specific_character.specific_character_fragment_background_image
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SpecificCharacterFragment : Fragment() {
 
-    private lateinit var specificCharacterViewModel: SpecificCharacterContract.ViewModel
+    private val specificCharacterViewModel by viewModel<SpecificCharacterViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,20 +38,15 @@ class SpecificCharacterFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         var characterId = EMPTY_STRING
         arguments?.getString(CHARACTER_ID)?.let { characterId = it }
-
-        //TODO fix when Koin implemented
-        specificCharacterViewModel =
-            ViewModelProvider(this, viewModelFactory {
-                SpecificCharacterViewModel(SpecificCharacterModel(MarvelService()), characterId)
-            }).get(SpecificCharacterViewModel::class.java)
 
         specificCharacterViewModel.getSpecificCharacterLiveData().observe(::getLifecycle, ::updateUI)
 
         activity?.activity_main_toolbar?.title = getString(R.string.string_specific_character)
 
-        specificCharacterViewModel.fetchSpecificCharacter()
+        specificCharacterViewModel.fetchSpecificCharacter(characterId)
     }
 
     private fun updateUI(data: Event<Data<List<Character>>>) {

@@ -6,29 +6,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.globant.marvelmvvm.R
-import com.globant.marvelmvvm.contract.AllCharactersContract
 import com.globant.domain.entity.Character
-import com.globant.domain.usecase.implementation.GetAllCharactersUseCaseImpl
-import com.globant.marvelmvvm.model.AllCharactersModel
 import com.globant.marvelmvvm.util.AllCharactersRecyclerViewAdapter
 import com.globant.domain.util.Constants.CHARACTER_ID
 import com.globant.marvelmvvm.util.Data
 import com.globant.marvelmvvm.util.Event
-import com.globant.marvelmvvm.util.MarvelViewModelFactory.viewModelFactory
 import com.globant.marvelmvvm.util.Status
 import com.globant.marvelmvvm.viewmodel.AllCharactersViewModel
 import kotlinx.android.synthetic.main.activity_main.activity_main_toolbar
 import kotlinx.android.synthetic.main.fragment_all_characters.fragment_all_characters_background_image
 import kotlinx.android.synthetic.main.fragment_all_characters.fragment_all_characters_loader
 import kotlinx.android.synthetic.main.fragment_all_characters.fragment_all_characters_recycler_view
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class AllCharactersFragment : Fragment() {
 
-    private lateinit var allCharactersViewModel: AllCharactersContract.ViewModel
+    private val allCharactersViewModel by viewModel<AllCharactersViewModel>()
     private var allCharactersAdapter = AllCharactersRecyclerViewAdapter { characterId ->
         replaceFragment(characterId)
     }
@@ -42,13 +38,6 @@ class AllCharactersFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        //TODO fix when Koin implemented
-        allCharactersViewModel =
-            ViewModelProvider(this, viewModelFactory {
-                AllCharactersViewModel(AllCharactersModel(MarvelService()))
-            })
-                .get(AllCharactersViewModel::class.java)
 
         allCharactersViewModel.getAllCharactersLiveData().observe(::getLifecycle, ::updateUI)
 
