@@ -12,14 +12,13 @@ class CharacterMapper {
         "${thumbnailResponse.path}$DOT${thumbnailResponse.extension}"
 
     private fun transformToCharacter(characterResponse: CharacterResponse): Character =
-        characterResponse.let {
-            return Character(
-                it.id,
-                it.name,
-                getDescription(it.description),
-                transformToThumbnail(it.thumbnail)
-            )
-        }
+        Character(
+            characterResponse.id,
+            characterResponse.name,
+            getDescription(characterResponse.description),
+            transformToThumbnail(characterResponse.thumbnail)
+        )
+
 
     private fun getDescription(description: String): String {
         return if (description.isEmpty())
