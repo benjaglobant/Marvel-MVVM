@@ -19,14 +19,12 @@ class CharacterMapper {
             transformToThumbnail(characterResponse.thumbnail)
         )
 
-
-    private fun getDescription(description: String): String {
-        return if (description.isEmpty()) {
+    private fun getDescription(description: String): String =
+        if (description.isEmpty()) {
             INVALID_DESCRIPTION
         } else {
             description
         }
-    }
 
     fun transformToListOfCharacters(response: MarvelBaseResponse<CharactersBaseResponse>): List<Character>? =
         response.data?.characters?.map { transformToCharacter(it) }
