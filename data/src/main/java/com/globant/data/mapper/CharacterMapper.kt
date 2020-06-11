@@ -21,10 +21,11 @@ class CharacterMapper {
 
 
     private fun getDescription(description: String): String {
-        return if (description.isEmpty())
+        return if (description.isEmpty()) {
             INVALID_DESCRIPTION
-        else
+        } else {
             description
+        }
     }
 
     fun transformToListOfCharacters(response: MarvelBaseResponse<CharactersBaseResponse>): List<Character>? =

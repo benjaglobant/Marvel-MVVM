@@ -51,7 +51,7 @@ class SpecificCharacterViewModelTest {
     fun setUp() {
         Dispatchers.setMain(mainThreadSurrogate)
         characterId = TEST_CHARACTER_ID
-        viewModel = SpecificCharacterViewModel(mockedModel, characterId)
+        viewModel = SpecificCharacterViewModel(mockedModel)
     }
 
     @ExperimentalCoroutinesApi
@@ -72,7 +72,7 @@ class SpecificCharacterViewModelTest {
         whenever(mockedModel.getSpecificCharacter(characterId)).thenReturn(invalidResult)
         whenever(invalidResult.exception).thenReturn(exception)
         runBlocking {
-            viewModel.fetchSpecificCharacter().join()
+            viewModel.fetchSpecificCharacter(characterId).join()
         }
         verify(mockedModel).getSpecificCharacter(characterId)
         assertEquals(responseList[ZERO].status, liveDataUnderTest.observedValues[ZERO]?.peekContent()?.status)
@@ -90,7 +90,7 @@ class SpecificCharacterViewModelTest {
         whenever(mockedModel.getSpecificCharacter(characterId)).thenReturn(validResult)
         whenever(validResult.data).thenReturn(charactersResponse)
         runBlocking {
-            viewModel.fetchSpecificCharacter().join()
+            viewModel.fetchSpecificCharacter(characterId).join()
         }
         verify(mockedModel).getSpecificCharacter(characterId)
         assertEquals(responseList[ZERO].status, liveDataUnderTest.observedValues[ZERO]?.peekContent()?.status)
