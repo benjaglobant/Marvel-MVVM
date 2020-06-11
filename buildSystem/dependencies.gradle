@@ -21,6 +21,8 @@ ext {
     mockitocore = "2.28.2"
     mockitoinline = "2.21.0"
     koinandroidxviewmodel = "2.1.5"
+    koinandroid = "2.1.5"
+    koinandroidxscope = "2.1.5"
     kointest = "2.1.5"
     androidxespressocore = "3.2.0"
     androidxjunit = "1.1.1"
@@ -48,6 +50,8 @@ ext {
             mockitocore               : "org.mockito:mockito-core:${mockitocore}",
             mockitoinline             : "org.mockito:mockito-inline:${mockitoinline}",
             koinandroidxviewmodel     : "org.koin:koin-androidx-viewmodel:${koinandroidxviewmodel}",
+            koinandroid               : "org.koin:koin-android:${koinandroid}",
+            koinandroidxscope         : "org.koin:koin-androidx-scope:${koinandroidxscope}",
             kointest                  : "org.koin:koin-test:${kointest}",
             androidxjunit             : "androidx.test.ext:junit:${androidxjunit}",
             androidxespressocore      : "androidx.test.espresso:espresso-core:${androidxespressocore}"

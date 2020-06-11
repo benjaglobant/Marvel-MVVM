@@ -1,10 +1,10 @@
 package com.globant.marvelmvvm.model
 
 import com.globant.marvelmvvm.contract.AllCharactersContract
-import com.globant.marvelmvvm.data.entity.Character
-import com.globant.marvelmvvm.data.service.MarvelService
-import com.globant.marvelmvvm.util.Result
+import com.globant.domain.entity.Character
+import com.globant.domain.usecase.GetAllCharactersUseCase
+import com.globant.domain.util.Result
 
-class AllCharactersModel(private val service: MarvelService) : AllCharactersContract.Model {
-    override fun getAllCharacters(): Result<List<Character>> = service.getAllCharactersFromAPI()
+class AllCharactersModel(private val getAllCharactersUseCase: GetAllCharactersUseCase) : AllCharactersContract.Model {
+    override fun getAllCharacters(): Result<List<Character>> = getAllCharactersUseCase.invoke()
 }

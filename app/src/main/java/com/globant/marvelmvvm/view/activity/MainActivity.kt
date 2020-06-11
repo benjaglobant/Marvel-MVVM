@@ -8,8 +8,8 @@ import androidx.core.view.GravityCompat
 import androidx.navigation.NavOptions
 import androidx.navigation.Navigation
 import com.globant.marvelmvvm.R
-import com.globant.marvelmvvm.util.Constants.CHARACTER_ID
-import com.globant.marvelmvvm.util.Constants.ZERO
+import com.globant.domain.util.Constants.CHARACTER_ID
+import com.globant.domain.util.Constants.ZERO
 import com.globant.marvelmvvm.view.dialogfragment.InsertCharacterIdDialog
 import com.google.android.material.navigation.NavigationView.OnNavigationItemSelectedListener
 import kotlinx.android.synthetic.main.activity_main.activity_main_toolbar

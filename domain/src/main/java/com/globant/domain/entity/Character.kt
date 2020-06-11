@@ -1,6 +1,6 @@
-package com.globant.marvelmvvm.data.entity
+package com.globant.domain.entity
 
-import com.globant.marvelmvvm.util.Constants.EMPTY_STRING
+import com.globant.domain.util.Constants.EMPTY_STRING
 
 data class Character(
     val id: String = EMPTY_STRING,

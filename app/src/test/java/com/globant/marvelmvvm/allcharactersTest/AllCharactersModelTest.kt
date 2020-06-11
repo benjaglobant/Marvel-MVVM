@@ -1,10 +1,11 @@
 package com.globant.marvelmvvm.allcharactersTest
 
 import com.globant.marvelmvvm.contract.AllCharactersContract
-import com.globant.marvelmvvm.data.entity.Character
-import com.globant.marvelmvvm.data.service.MarvelService
+import com.globant.domain.entity.Character
+import com.globant.domain.service.CharactersService
+import com.globant.domain.usecase.implementation.GetAllCharactersUseCaseImpl
 import com.globant.marvelmvvm.model.AllCharactersModel
-import com.globant.marvelmvvm.util.Result
+import com.globant.domain.util.Result
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
@@ -15,26 +16,26 @@ import org.junit.Assert.assertEquals
 class AllCharactersModelTest {
 
     private lateinit var model: AllCharactersContract.Model
-    private var mockedService: MarvelService = mock()
+    private var mockedService: CharactersService = mock()
     private var validResult: Result.Success<List<Character>> = mock()
     private var invalidResult: Result.Failure = mock()
 
     @Before
     fun setUp() {
-        model = AllCharactersModel(mockedService)
+        model = AllCharactersModel(GetAllCharactersUseCaseImpl(mockedService))
     }
 
     @Test
     fun `call getAllCharactersFromAPI returns success result`() {
-        whenever(mockedService.getAllCharactersFromAPI()).thenReturn(validResult)
+        whenever(mockedService.getAllCharacters()).thenReturn(validResult)
         assertEquals(validResult, model.getAllCharacters())
-        verify(mockedService).getAllCharactersFromAPI()
+        verify(mockedService).getAllCharacters()
     }
 
     @Test
     fun `call getAllCharactersFromAPI returns failure result`() {
-        whenever(mockedService.getAllCharactersFromAPI()).thenReturn(invalidResult)
+        whenever(mockedService.getAllCharacters()).thenReturn(invalidResult)
         assertEquals(invalidResult, model.getAllCharacters())
-        verify(mockedService).getAllCharactersFromAPI()
+        verify(mockedService).getAllCharacters()
     }
 }

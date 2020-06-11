@@ -6,8 +6,8 @@ import androidx.lifecycle.Observer
 import com.globant.marvelmvvm.contract.SpecificCharacterContract
 import com.globant.marvelmvvm.util.Data
 import com.globant.marvelmvvm.util.Status
-import com.globant.marvelmvvm.util.Result
-import com.globant.marvelmvvm.data.entity.Character
+import com.globant.domain.util.Result
+import com.globant.domain.entity.Character
 import com.globant.marvelmvvm.viewmodel.SpecificCharacterViewModel
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
@@ -51,7 +51,7 @@ class SpecificCharacterViewModelTest {
     fun setUp() {
         Dispatchers.setMain(mainThreadSurrogate)
         characterId = TEST_CHARACTER_ID
-        viewModel = SpecificCharacterViewModel(mockedModel, characterId)
+        viewModel = SpecificCharacterViewModel(mockedModel)
     }
 
     @ExperimentalCoroutinesApi
@@ -72,7 +72,7 @@ class SpecificCharacterViewModelTest {
         whenever(mockedModel.getSpecificCharacter(characterId)).thenReturn(invalidResult)
         whenever(invalidResult.exception).thenReturn(exception)
         runBlocking {
-            viewModel.fetchSpecificCharacter().join()
+            viewModel.fetchSpecificCharacter(characterId).join()
         }
         verify(mockedModel).getSpecificCharacter(characterId)
         assertEquals(responseList[ZERO].status, liveDataUnderTest.observedValues[ZERO]?.peekContent()?.status)
@@ -90,7 +90,7 @@ class SpecificCharacterViewModelTest {
         whenever(mockedModel.getSpecificCharacter(characterId)).thenReturn(validResult)
         whenever(validResult.data).thenReturn(charactersResponse)
         runBlocking {
-            viewModel.fetchSpecificCharacter().join()
+            viewModel.fetchSpecificCharacter(characterId).join()
         }
         verify(mockedModel).getSpecificCharacter(characterId)
         assertEquals(responseList[ZERO].status, liveDataUnderTest.observedValues[ZERO]?.peekContent()?.status)

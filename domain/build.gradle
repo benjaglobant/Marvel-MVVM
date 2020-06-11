@@ -7,4 +7,6 @@ dependencies {
     def lib = rootProject.ext.generalDependencies
 
     implementation lib.koinandroidxviewmodel
+    implementation lib.koinandroid
+    implementation lib.koinandroidxscope
 }

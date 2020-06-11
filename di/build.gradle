@@ -26,14 +26,17 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation project(path: ':domain')
     implementation project(path: ':data')
+    implementation project(path: ':domain')
 
     def lib = rootProject.ext.generalDependencies
 
     implementation lib.kotlin
     implementation lib.appcompat
     implementation lib.corektx
+    implementation lib.koinandroidxviewmodel
+    implementation lib.koinandroid
+    implementation lib.koinandroidxscope
     testImplementation lib.junit
     androidTestImplementation lib.androidxespressocore
     androidTestImplementation lib.androidxjunit
