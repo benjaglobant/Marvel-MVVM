@@ -26,6 +26,11 @@ ext {
     kointest = "2.1.5"
     androidxespressocore = "3.2.0"
     androidxjunit = "1.1.1"
+    roomruntime = "2.2.5"
+    roomktx = "2.2.5"
+    roomtest = "2.2.5"
+    kapt = "2.2.5"
+    kaptlifecycle = "2.2.0"
 
     generalDependencies = [
             kotlin                    : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlin}",
@@ -54,6 +59,11 @@ ext {
             koinandroidxscope         : "org.koin:koin-androidx-scope:${koinandroidxscope}",
             kointest                  : "org.koin:koin-test:${kointest}",
             androidxjunit             : "androidx.test.ext:junit:${androidxjunit}",
-            androidxespressocore      : "androidx.test.espresso:espresso-core:${androidxespressocore}"
+            androidxespressocore      : "androidx.test.espresso:espresso-core:${androidxespressocore}",
+            roomruntime               : "androidx.room:room-runtime:${roomruntime}",
+            roomktx                   : "androidx.room:room-ktx:${roomktx}",
+            roomtest                  : "androidx.room:room-testing:${roomtest}",
+            kapt                      : "androidx.room:room-compiler:${kapt}",
+            kaptlifecycle             : "androidx.lifecycle:lifecycle-compiler:${kaptlifecycle}"
     ]
 }

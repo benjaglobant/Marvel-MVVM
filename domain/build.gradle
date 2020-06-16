@@ -9,4 +9,5 @@ dependencies {
     implementation lib.koinandroidxviewmodel
     implementation lib.koinandroid
     implementation lib.koinandroidxscope
+    implementation lib.roomruntime
 }

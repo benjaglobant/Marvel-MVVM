@@ -1,6 +1,7 @@
 package com.globant.marvelmvvm
 
 import android.app.Application
+import com.globant.di.dataBaseModule
 import com.globant.di.servicesModule
 import com.globant.di.useCasesModule
 import com.globant.marvelmvvm.di.modelsModule
@@ -12,7 +13,7 @@ class SampleApplication : Application() {
         super.onCreate()
 
         startKoin {
-            modules(listOf(viewModelsModule, modelsModule, servicesModule, useCasesModule))
+            modules(listOf(viewModelsModule, modelsModule, servicesModule, useCasesModule, dataBaseModule))
         }
     }
 }
