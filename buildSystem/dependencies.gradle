@@ -31,6 +31,7 @@ ext {
     roomtest = "2.2.5"
     kapt = "2.2.5"
     kaptlifecycle = "2.2.0"
+    stetho = "1.5.1"
 
     generalDependencies = [
             kotlin                    : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlin}",
@@ -64,6 +65,7 @@ ext {
             roomktx                   : "androidx.room:room-ktx:${roomktx}",
             roomtest                  : "androidx.room:room-testing:${roomtest}",
             kapt                      : "androidx.room:room-compiler:${kapt}",
-            kaptlifecycle             : "androidx.lifecycle:lifecycle-compiler:${kaptlifecycle}"
+            kaptlifecycle             : "androidx.lifecycle:lifecycle-compiler:${kaptlifecycle}",
+            stetho                    : "com.facebook.stetho:stetho:${stetho}"
     ]
 }
