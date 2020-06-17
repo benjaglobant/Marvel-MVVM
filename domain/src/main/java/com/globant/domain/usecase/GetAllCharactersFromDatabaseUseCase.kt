@@ -1,7 +1,8 @@
 package com.globant.domain.usecase
 
-import com.globant.domain.entity.CharacterRoom
+import com.globant.domain.entity.Character
+import com.globant.domain.util.Result
 
 interface GetAllCharactersFromDatabaseUseCase {
-    fun invoke(): List<CharacterRoom>
+    fun invoke(): Result<List<Character>>
 }

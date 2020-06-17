@@ -13,7 +13,7 @@ interface CharacterDao {
     fun getAllCharacters(): List<CharacterRoom>
 
     @Query("SELECT * FROM character_table WHERE id = :character_id")
-    fun getSpecificCharacter(character_id: String): CharacterRoom
+    fun getSpecificCharacter(character_id: String): List<CharacterRoom>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insertCharacter(character: CharacterRoom)

@@ -1,8 +1,10 @@
 package com.globant.di
 
 import androidx.room.Room
-import com.globant.data.database.CharacterRoomDatabaseImpl
+import com.globant.data.database.CharacterDatabase
+import com.globant.data.repository.CharacterRepositoryImpl
 import com.globant.data.service.CharacterServiceImpl
+import com.globant.domain.repository.CharacterRepository
 import com.globant.domain.service.CharactersService
 import com.globant.domain.usecase.GetAllCharactersFromDatabaseUseCase
 import com.globant.domain.usecase.GetAllCharactersUseCase
@@ -29,8 +31,12 @@ val useCasesModule = module {
 }
 
 val dataBaseModule = module {
-    single { Room.databaseBuilder(get(), CharacterRoomDatabaseImpl::class.java, DATA_BASE_NAME).build() }
-    single { get<CharacterRoomDatabaseImpl>().characterDao() }
+    single { Room.databaseBuilder(get(), CharacterDatabase::class.java, DATA_BASE_NAME).build() }
+    single { get<CharacterDatabase>().characterDao() }
+}
+
+val repositoryModule = module {
+    single<CharacterRepository> { CharacterRepositoryImpl(get()) }
 }
 
 private const val DATA_BASE_NAME = "characters_database"

@@ -1,12 +1,12 @@
 package com.globant.domain.usecase.implementation
 
-import com.globant.domain.database.CharacterRoomDatabase
-import com.globant.domain.entity.CharacterRoom
+import com.globant.domain.entity.Character
+import com.globant.domain.repository.CharacterRepository
 import com.globant.domain.usecase.UpdateCharactersDatabaseUseCase
 
-class UpdateCharactersDatabaseUseCaseImpl(private val characterRoomDatabase: CharacterRoomDatabase) :
+class UpdateCharactersDatabaseUseCaseImpl(private val characterRepository: CharacterRepository) :
     UpdateCharactersDatabaseUseCase {
-    override fun invoke(characters: List<CharacterRoom>) {
-        characterRoomDatabase.insertLocalCharacters(characters)
+    override fun invoke(characters: List<Character>) {
+        characterRepository.insertLocalCharacters(characters)
     }
 }

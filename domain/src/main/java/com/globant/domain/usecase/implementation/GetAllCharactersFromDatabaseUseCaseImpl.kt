@@ -1,10 +1,11 @@
 package com.globant.domain.usecase.implementation
 
-import com.globant.domain.database.CharacterRoomDatabase
-import com.globant.domain.entity.CharacterRoom
+import com.globant.domain.entity.Character
+import com.globant.domain.util.Result
+import com.globant.domain.repository.CharacterRepository
 import com.globant.domain.usecase.GetAllCharactersFromDatabaseUseCase
 
-class GetAllCharactersFromDatabaseUseCaseImpl(private val characterRoomDatabase: CharacterRoomDatabase) :
+class GetAllCharactersFromDatabaseUseCaseImpl(private val characterRepository: CharacterRepository) :
     GetAllCharactersFromDatabaseUseCase {
-    override fun invoke(): List<CharacterRoom> = characterRoomDatabase.getAllLocalCharacters()
+    override fun invoke(): Result<List<Character>> = characterRepository.getAllLocalCharacters()
 }
