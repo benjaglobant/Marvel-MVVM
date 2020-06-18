@@ -20,16 +20,10 @@ ext {
     mockitokotlin2 = "2.2.0"
     mockitocore = "2.28.2"
     mockitoinline = "2.21.0"
-    koinandroidxviewmodel = "2.1.5"
-    koinandroid = "2.1.5"
-    koinandroidxscope = "2.1.5"
-    kointest = "2.1.5"
+    koinversion = "2.1.5"
     androidxespressocore = "3.2.0"
     androidxjunit = "1.1.1"
-    roomruntime = "2.2.5"
-    roomktx = "2.2.5"
-    roomtest = "2.2.5"
-    kapt = "2.2.5"
+    roomversion = "2.2.5"
     kaptlifecycle = "2.2.0"
     stetho = "1.5.1"
 
@@ -55,16 +49,15 @@ ext {
             mockitokotlin2            : "com.nhaarman.mockitokotlin2:mockito-kotlin:${mockitokotlin2}",
             mockitocore               : "org.mockito:mockito-core:${mockitocore}",
             mockitoinline             : "org.mockito:mockito-inline:${mockitoinline}",
-            koinandroidxviewmodel     : "org.koin:koin-androidx-viewmodel:${koinandroidxviewmodel}",
-            koinandroid               : "org.koin:koin-android:${koinandroid}",
-            koinandroidxscope         : "org.koin:koin-androidx-scope:${koinandroidxscope}",
-            kointest                  : "org.koin:koin-test:${kointest}",
+            koinandroidxviewmodel     : "org.koin:koin-androidx-viewmodel:${koinversion}",
+            koinandroid               : "org.koin:koin-android:${koinversion}",
+            koinandroidxscope         : "org.koin:koin-androidx-scope:${koinversion}",
+            kointest                  : "org.koin:koin-test:${koinversion}",
             androidxjunit             : "androidx.test.ext:junit:${androidxjunit}",
             androidxespressocore      : "androidx.test.espresso:espresso-core:${androidxespressocore}",
-            roomruntime               : "androidx.room:room-runtime:${roomruntime}",
-            roomktx                   : "androidx.room:room-ktx:${roomktx}",
-            roomtest                  : "androidx.room:room-testing:${roomtest}",
-            kapt                      : "androidx.room:room-compiler:${kapt}",
+            roomruntime               : "androidx.room:room-runtime:${roomversion}",
+            roomktx                   : "androidx.room:room-ktx:${roomversion}",
+            kapt                      : "androidx.room:room-compiler:${roomversion}",
             kaptlifecycle             : "androidx.lifecycle:lifecycle-compiler:${kaptlifecycle}",
             stetho                    : "com.facebook.stetho:stetho:${stetho}"
     ]

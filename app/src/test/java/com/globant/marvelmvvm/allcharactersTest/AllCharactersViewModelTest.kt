@@ -70,10 +70,13 @@ class AllCharactersViewModelTest {
         )
         whenever(mockedModel.getAllCharacters()).thenReturn(validResult)
         whenever(validResult.data).thenReturn(charactersResponse)
+
         runBlocking {
             viewModel.fetchAllCharacters().join()
         }
+
         verify(mockedModel).getAllCharacters()
+
         assertEquals(responseList[ZERO].status, liveDataUnderTest.observedValues[ZERO]?.peekContent()?.status)
         assertEquals(responseList[ONE].status, liveDataUnderTest.observedValues[ONE]?.peekContent()?.status)
         assertEquals(responseList[ONE].data, liveDataUnderTest.observedValues[ONE]?.peekContent()?.data)
@@ -88,10 +91,13 @@ class AllCharactersViewModelTest {
         )
         whenever(mockedModel.getAllCharacters()).thenReturn(invalidResult)
         whenever(invalidResult.exception).thenReturn(exception)
+
         runBlocking {
             viewModel.fetchAllCharacters().join()
         }
+
         verify(mockedModel).getAllCharacters()
+
         assertEquals(responseList[ZERO].status, liveDataUnderTest.observedValues[ZERO]?.peekContent()?.status)
         assertEquals(responseList[ONE].status, liveDataUnderTest.observedValues[ONE]?.peekContent()?.status)
         assertEquals(responseList[ONE].error, liveDataUnderTest.observedValues[ONE]?.peekContent()?.error)

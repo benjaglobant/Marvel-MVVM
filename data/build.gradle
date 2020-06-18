@@ -40,5 +40,4 @@ dependencies {
     implementation lib.roomktx
     kapt lib.kapt
     implementation lib.kaptlifecycle
-    androidTestImplementation lib.roomtest
 }

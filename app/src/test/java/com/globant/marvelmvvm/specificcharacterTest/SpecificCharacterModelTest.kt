@@ -12,8 +12,10 @@ import com.nhaarman.mockitokotlin2.whenever
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
+import org.junit.runner.RunWith
+import org.mockito.junit.MockitoJUnitRunner
 
-
+@RunWith(MockitoJUnitRunner::class)
 class SpecificCharacterModelTest {
 
     private lateinit var model: SpecificCharacterContract.Model
@@ -32,7 +34,9 @@ class SpecificCharacterModelTest {
     @Test
     fun `call getSpecificCharacter from remote returns success result`() {
         whenever(mockedGetSpecificCharacterUseCase.invoke(characterId)).thenReturn(validResult)
+
         assertEquals(validResult, model.getSpecificCharacter(characterId))
+
         verify(mockedGetSpecificCharacterUseCase).invoke(characterId)
     }
 
@@ -40,7 +44,9 @@ class SpecificCharacterModelTest {
     fun `call getSpecificCharacter from remote returns failure result, database returns success result`() {
         whenever(mockedGetSpecificCharacterUseCase.invoke(characterId)).thenReturn(invalidResult)
         whenever(mockedGetSpecificCharacterFromDatabaseUseCase.invoke(characterId)).thenReturn(validResult)
+
         assertEquals(validResult, model.getSpecificCharacter(characterId))
+
         verify(mockedGetSpecificCharacterUseCase).invoke(characterId)
         verify(mockedGetSpecificCharacterFromDatabaseUseCase).invoke(characterId)
     }
@@ -49,7 +55,9 @@ class SpecificCharacterModelTest {
     fun `call getSpecificCharacter from remote returns failure result, database returns failure result`() {
         whenever(mockedGetSpecificCharacterUseCase.invoke(characterId)).thenReturn(invalidResult)
         whenever(mockedGetSpecificCharacterFromDatabaseUseCase.invoke(characterId)).thenReturn(invalidResult)
+
         assertEquals(invalidResult, model.getSpecificCharacter(characterId))
+
         verify(mockedGetSpecificCharacterUseCase).invoke(characterId)
         verify(mockedGetSpecificCharacterFromDatabaseUseCase).invoke(characterId)
     }

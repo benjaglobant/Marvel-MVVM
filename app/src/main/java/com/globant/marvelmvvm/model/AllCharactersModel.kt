@@ -14,18 +14,14 @@ class AllCharactersModel(
 ) : AllCharactersContract.Model {
 
     override fun getAllCharacters(): Result<List<Character>> {
-        return when (val characters = getAllCharactersService()) {
+        return when (val characters = getAllCharactersUseCase.invoke()) {
             is Result.Success -> {
                 characters.data?.let { updateCharactersDatabaseUseCase.invoke(it) }
                 characters
             }
             is Result.Failure -> {
-                getAllCharactersDatabase()
+                getAllCharactersFromDatabaseUseCase.invoke()
             }
         }
     }
-
-    private fun getAllCharactersService(): Result<List<Character>> = getAllCharactersUseCase.invoke()
-
-    private fun getAllCharactersDatabase(): Result<List<Character>> = getAllCharactersFromDatabaseUseCase.invoke()
 }

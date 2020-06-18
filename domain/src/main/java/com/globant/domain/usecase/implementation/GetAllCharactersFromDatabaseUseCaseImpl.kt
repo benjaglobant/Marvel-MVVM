@@ -5,7 +5,8 @@ import com.globant.domain.util.Result
 import com.globant.domain.repository.CharacterRepository
 import com.globant.domain.usecase.GetAllCharactersFromDatabaseUseCase
 
-class GetAllCharactersFromDatabaseUseCaseImpl(private val characterRepository: CharacterRepository) :
-    GetAllCharactersFromDatabaseUseCase {
+class GetAllCharactersFromDatabaseUseCaseImpl(
+    private val characterRepository: CharacterRepository
+) : GetAllCharactersFromDatabaseUseCase {
     override fun invoke(): Result<List<Character>> = characterRepository.getAllLocalCharacters()
 }

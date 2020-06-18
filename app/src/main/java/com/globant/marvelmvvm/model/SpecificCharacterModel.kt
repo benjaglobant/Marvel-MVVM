@@ -11,19 +11,13 @@ class SpecificCharacterModel(
     private val getSpecificCharacterFromDatabaseUseCase: GetSpecificCharacterFromDatabaseUseCase
 ) : SpecificCharacterContract.Model {
     override fun getSpecificCharacter(characterId: String): Result<List<Character>> {
-        return when (val characters = getSpecificCharacterService(characterId)) {
+        return when (val characters = getSpecificCharacterUseCase.invoke(characterId)) {
             is Result.Success -> {
                 characters
             }
             is Result.Failure -> {
-                getSpecificCharacterDatabase(characterId)
+                getSpecificCharacterFromDatabaseUseCase.invoke(characterId)
             }
         }
     }
-
-    private fun getSpecificCharacterService(characterId: String): Result<List<Character>> =
-        getSpecificCharacterUseCase.invoke(characterId)
-
-    private fun getSpecificCharacterDatabase(characterId: String): Result<List<Character>> =
-        getSpecificCharacterFromDatabaseUseCase.invoke(characterId)
 }

@@ -32,6 +32,6 @@ class CharacterRoomMapper {
         characters.map { transformToCharacter(it) }
 
     companion object {
-        const val INVALID_DESCRIPTION = "Not description available"
+        private const val INVALID_DESCRIPTION = "Not description available"
     }
 }
