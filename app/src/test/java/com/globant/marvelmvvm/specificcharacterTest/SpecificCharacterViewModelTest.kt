@@ -98,7 +98,6 @@ class SpecificCharacterViewModelTest {
         assertEquals(responseList[ONE].data, liveDataUnderTest.observedValues[ONE]?.peekContent()?.data)
     }
 
-
     class TestObserver<T> : Observer<T> {
         val observedValues = mutableListOf<T?>()
 

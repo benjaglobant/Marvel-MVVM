@@ -62,24 +62,6 @@ class AllCharactersViewModelTest {
     }
 
     @Test
-    fun `when getAllCharacters returns gets error in response`() {
-        val liveDataUnderTest = viewModel.getAllCharactersLiveData().testObserver()
-        val responseList = listOf(
-            Data(status = Status.LOADING, data = null, error = null),
-            Data(status = Status.RESPONSE_ERROR, data = null, error = exception)
-        )
-        whenever(mockedModel.getAllCharacters()).thenReturn(invalidResult)
-        whenever(invalidResult.exception).thenReturn(exception)
-        runBlocking {
-            viewModel.fetchAllCharacters().join()
-        }
-        verify(mockedModel).getAllCharacters()
-        assertEquals(responseList[ZERO].status, liveDataUnderTest.observedValues[ZERO]?.peekContent()?.status)
-        assertEquals(responseList[ONE].status, liveDataUnderTest.observedValues[ONE]?.peekContent()?.status)
-        assertEquals(responseList[ONE].error, liveDataUnderTest.observedValues[ONE]?.peekContent()?.error)
-    }
-
-    @Test
     fun `when getAllCharacters returns success response`() {
         val liveDataUnderTest = viewModel.getAllCharactersLiveData().testObserver()
         responseList = listOf(
@@ -97,6 +79,23 @@ class AllCharactersViewModelTest {
         assertEquals(responseList[ONE].data, liveDataUnderTest.observedValues[ONE]?.peekContent()?.data)
     }
 
+    @Test
+    fun `when getAllCharacters returns gets error in response`() {
+        val liveDataUnderTest = viewModel.getAllCharactersLiveData().testObserver()
+        val responseList = listOf(
+            Data(status = Status.LOADING, data = null, error = null),
+            Data(status = Status.RESPONSE_ERROR, data = null, error = exception)
+        )
+        whenever(mockedModel.getAllCharacters()).thenReturn(invalidResult)
+        whenever(invalidResult.exception).thenReturn(exception)
+        runBlocking {
+            viewModel.fetchAllCharacters().join()
+        }
+        verify(mockedModel).getAllCharacters()
+        assertEquals(responseList[ZERO].status, liveDataUnderTest.observedValues[ZERO]?.peekContent()?.status)
+        assertEquals(responseList[ONE].status, liveDataUnderTest.observedValues[ONE]?.peekContent()?.status)
+        assertEquals(responseList[ONE].error, liveDataUnderTest.observedValues[ONE]?.peekContent()?.error)
+    }
 
     class TestObserver<T> : Observer<T> {
 
