@@ -30,7 +30,7 @@ class CharacterMapper {
         response.data?.characters?.map { transformToCharacter(it) }
 
     companion object {
-        const val DOT = "."
-        const val INVALID_DESCRIPTION = "Not description available"
+        private const val DOT = "."
+        private const val INVALID_DESCRIPTION = "Not description available"
     }
 }

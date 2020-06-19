@@ -8,7 +8,7 @@ import com.globant.domain.service.CharactersService
 import com.globant.domain.util.Constants.NOT_FOUND
 import com.globant.domain.util.Result
 
-class CharacterServiceImpl: CharactersService {
+class CharacterServiceImpl : CharactersService {
 
     private val api = MarvelRequestGenerator()
     private val mapper = CharacterMapper()

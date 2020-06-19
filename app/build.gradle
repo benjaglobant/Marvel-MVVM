@@ -59,4 +59,5 @@ dependencies {
     testImplementation lib.mockitoinline
     androidTestImplementation lib.androidxespressocore
     androidTestImplementation lib.androidxjunit
+    implementation lib.stetho
 }

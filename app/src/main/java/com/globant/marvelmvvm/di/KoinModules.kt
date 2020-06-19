@@ -15,6 +15,6 @@ val viewModelsModule = module {
 }
 
 val modelsModule = module {
-    single<AllCharactersContract.Model> { AllCharactersModel(get()) }
-    single<SpecificCharacterContract.Model> { SpecificCharacterModel(get()) }
+    single<AllCharactersContract.Model> { AllCharactersModel(get(), get(), get()) }
+    single<SpecificCharacterContract.Model> { SpecificCharacterModel(get(), get()) }
 }
