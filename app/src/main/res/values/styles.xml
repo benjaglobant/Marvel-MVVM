@@ -33,6 +33,7 @@
         <item name="android:paddingEnd">@dimen/padding_card_view_item_character_id</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">@dimen/text_size_card_view_item_character_id</item>
+        <item name="android:textAlignment">center</item>
     </style>
 
     <style name="style_card_view_item_character_id" parent="style_base_text_view">
@@ -42,5 +43,10 @@
 
     <style name="style_specific_character_fragment_text_view" parent="style_base_text_view">
         <item name="android:background">@drawable/specific_character_fragment_text_view_background</item>
+    </style>
+
+    <style name="dialog_close_button">
+        <item name="android:src">@drawable/ic_close</item>
+        <item name="android:background">@color/colorPrimary</item>
     </style>
 </resources>
