@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import com.globant.marvelmvvm.R
+import kotlinx.android.synthetic.main.dialog_insert_character_id.dialog_close_button
 import kotlinx.android.synthetic.main.dialog_insert_character_id.dialog_insert_character_id_edit_text
 import kotlinx.android.synthetic.main.dialog_insert_character_id.dialog_search_button
 
@@ -27,5 +28,6 @@ class InsertCharacterIdDialog(private val onSearchButtonClicked: (String) -> Uni
                 Toast.makeText(this.context, R.string.string_insert_character_id_error, Toast.LENGTH_SHORT).show()
             }
         }
+        dialog_close_button.setOnClickListener { this.dismiss() }
     }
 }

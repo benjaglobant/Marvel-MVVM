@@ -16,6 +16,11 @@
     <dimen name="padding_card_view_item_character_id">6dp</dimen>
     <dimen name="radius_character_id_background">10dp</dimen>
     <dimen name="padding_dialog_insert_character_id">10dp</dimen>
-    <dimen name="margin_top_dialog_insert_character_id_button">20dp</dimen>
+    <dimen name="margin_top_dialog_insert_character_id_button">10dp</dimen>
     <dimen name="margin_specific_character_fragment_text_view">8dp</dimen>
+    <dimen name="text_view_margin_top">10dp</dimen>
+    <dimen name="scroll_view_horizontal_margin">5dp</dimen>
+    <dimen name="red_rectangle_width">300dp</dimen>
+    <dimen name="red_rectangle_height">120dp</dimen>
+    <dimen name="black_rectangle_top">70dp</dimen>
 </resources>
